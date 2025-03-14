@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { BookOpen, X } from 'lucide-react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 
 interface DictionaryPopupProps {

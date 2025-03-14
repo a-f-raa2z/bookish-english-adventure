@@ -34,7 +34,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
     }
   };
   
-  // Wrap text in spans to make words clickable and highlight complex words
+  // Wrap text in spans to make words clickable but don't underline them in sidebar
   const wrapWordsInSpans = (text: string) => {
     return text.split(' ').map((word, i) => {
       // Check if the word is complex (removing punctuation for the check)
@@ -44,10 +44,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
       return (
         <React.Fragment key={i}>
           <span 
-            className={`cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded ${
-              isComplex ? 'border-b border-dashed border-primary' : ''
-            }`}
-            title={isComplex ? "This may be a complex word" : undefined}
+            className="cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded"
           >
             {word}
           </span>
