@@ -201,12 +201,6 @@ const CourseLevels = () => {
           ))}
         </Accordion>
       </div>
-      
-      <div className="mt-12 text-center">
-        <button className="px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl">
-          Explore All Levels
-        </button>
-      </div>
     </section>
   );
 };
