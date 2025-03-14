@@ -79,15 +79,17 @@ const BookDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Book content (4 columns) */}
           <div className="lg:col-span-4">
-            <div className="mb-6 flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Book Content</h2>
-              <LanguageSelector />
-            </div>
+            <h2 className="text-2xl font-semibold mb-6">Content</h2>
             <BookContent bookId={bookId || 'atomic-habits'} />
           </div>
           
           {/* Summary and Podcast tabs (8 columns) */}
           <div className="lg:col-span-8">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-semibold">Book Formats</h2>
+              <LanguageSelector />
+            </div>
+            
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="w-full grid grid-cols-2">
                 <TabsTrigger value="summary" className="flex items-center gap-2">
