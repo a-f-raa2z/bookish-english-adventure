@@ -128,13 +128,6 @@ const Features = () => {
             />
           ))}
         </ul>
-        
-        <div className="mt-8 text-center">
-          <p className="text-lg font-semibold mb-6">Ready to transform your English skills?</p>
-          <button className="px-8 py-3 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl">
-            Join the Course
-          </button>
-        </div>
       </div>
     </div>
   );
