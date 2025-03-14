@@ -15,7 +15,6 @@ const CourseDetail = () => {
       <Header />
       <Hero />
       <CourseOverview />
-      <PricingSection />
       <CourseLevels />
       <WeeklyContent />
       <TargetAudience />
