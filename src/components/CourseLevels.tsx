@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { BookOpenCheck, ChevronRight, GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -28,30 +28,6 @@ const levels = [
 ];
 
 const CourseLevels = () => {
-  const levelRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px"
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    levelRefs.current.forEach(el => {
-      if (el) observer.observe(el);
-    });
-    
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section id="levels" className="section-container bg-accent/30">
       <div className="text-center mb-16">
@@ -67,11 +43,7 @@ const CourseLevels = () => {
         <Accordion type="single" collapsible className="w-full">
           {levels.map((level, index) => (
             <AccordionItem key={index} value={`level-${index}`}>
-              <div 
-                ref={el => levelRefs.current[index] = el}
-                className="glass-card opacity-0 mb-4 overflow-hidden"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
+              <div className="glass-card mb-4 overflow-hidden">
                 <AccordionTrigger className="px-6 py-4 hover:no-underline">
                   <div className="flex flex-col md:flex-row md:items-center gap-4 text-left">
                     <div className={`p-3 rounded-xl bg-gradient-to-br ${level.color} flex-shrink-0`}>
