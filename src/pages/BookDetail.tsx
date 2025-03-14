@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -9,6 +8,7 @@ import DictionaryPopup from '@/components/book/DictionaryPopup';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Star, Headphones, Clock, FileText, Globe } from 'lucide-react';
+import { isComplexWord } from '@/utils/complexWordsUtil';
 
 const BookDetail = () => {
   const { bookId } = useParams<{ bookId: string }>();
@@ -16,7 +16,6 @@ const BookDetail = () => {
   const [language, setLanguage] = useState('en');
   const [translatedParagraphs, setTranslatedParagraphs] = useState<Record<number, boolean>>({});
   
-  // Dictionary popup state
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   
@@ -30,18 +29,25 @@ const BookDetail = () => {
     }
   };
   
-  // Wrap text in spans to make words clickable
   const wrapWordsInSpans = (text: string) => {
-    return text.split(' ').map((word, i) => (
-      <React.Fragment key={i}>
-        <span 
-          className="cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded"
-        >
-          {word}
-        </span>
-        {i < text.split(' ').length - 1 ? ' ' : ''}
-      </React.Fragment>
-    ));
+    return text.split(' ').map((word, i) => {
+      const wordWithoutPunctuation = word.replace(/[.,;:!?"'()]/g, '');
+      const isComplex = isComplexWord(wordWithoutPunctuation);
+      
+      return (
+        <React.Fragment key={i}>
+          <span 
+            className={`cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded ${
+              isComplex ? 'border-b border-dashed border-primary' : ''
+            }`}
+            title={isComplex ? "This may be a complex word" : undefined}
+          >
+            {word}
+          </span>
+          {i < text.split(' ').length - 1 ? ' ' : ''}
+        </React.Fragment>
+      );
+    });
   };
   
   const toggleTranslation = (paragraphIndex: number) => {
@@ -51,7 +57,6 @@ const BookDetail = () => {
     }));
   };
   
-  // Mock translations for demonstration
   const getTranslation = (text: string, lang: string) => {
     if (lang === 'es') return `[Spanish] ${text.substring(0, 50)}...`;
     if (lang === 'fr') return `[French] ${text.substring(0, 50)}...`;
@@ -60,7 +65,6 @@ const BookDetail = () => {
     return text;
   };
   
-  // Sample paragraphs from the summary
   const summaryParagraphs = [
     "In a society that often celebrates dramatic changes, the impact of small and gradual improvements is frequently overlooked. James Clear, a leading expert on habits, draws from both in-depth research and his own experiences to provide a framework for transforming productivity and personal growth. His work demonstrates how even the smallest daily decisions accumulate over time, driving significant transformations without causing major disruptions.",
     
@@ -89,7 +93,6 @@ const BookDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
-        {/* Dictionary popup */}
         <DictionaryPopup 
           word={selectedWord} 
           language={language} 
@@ -97,10 +100,8 @@ const BookDetail = () => {
           onOpenChange={setIsPopupOpen} 
         />
         
-        {/* Top row with all book information */}
         <div className="mb-8 p-6 bg-card rounded-lg border shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            {/* Book cover (3 columns) */}
             <div className="md:col-span-3">
               <img 
                 src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg" 
@@ -109,7 +110,6 @@ const BookDetail = () => {
               />
             </div>
             
-            {/* Book details (9 columns) */}
             <div className="md:col-span-9">
               <h1 className="text-3xl font-bold mb-2">Atomic Habits</h1>
               <p className="text-xl text-muted-foreground mb-4">An Easy & Proven Way to Build Good Habits & Break Bad Ones</p>
@@ -134,7 +134,6 @@ const BookDetail = () => {
                 <Badge variant="secondary">self-help</Badge>
               </div>
               
-              {/* Reading options moved below tags */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
                   <Headphones className="h-4 w-4 text-primary" />
@@ -155,15 +154,12 @@ const BookDetail = () => {
           </div>
         </div>
         
-        {/* Content area with 1/3 for book content and 2/3 for tabs */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Book content (4 columns) */}
           <div className="lg:col-span-4">
             <h2 className="text-2xl font-semibold mb-6">Content</h2>
             <BookContent bookId={bookId || 'atomic-habits'} />
           </div>
           
-          {/* Summary and Podcast tabs (8 columns) */}
           <div className="lg:col-span-8">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-semibold">Book Formats</h2>
@@ -258,3 +254,4 @@ const BookDetail = () => {
 };
 
 export default BookDetail;
+

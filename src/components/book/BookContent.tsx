@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
+import { isComplexWord } from '@/utils/complexWordsUtil';
 
 interface BookContentProps {
   bookId: string;
@@ -24,18 +25,27 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
     }
   };
   
-  // Wrap text in spans to make words clickable
+  // Wrap text in spans to make words clickable and highlight complex words
   const wrapWordsInSpans = (text: string) => {
-    return text.split(' ').map((word, i) => (
-      <React.Fragment key={i}>
-        <span 
-          className="cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded"
-        >
-          {word}
-        </span>
-        {i < text.split(' ').length - 1 ? ' ' : ''}
-      </React.Fragment>
-    ));
+    return text.split(' ').map((word, i) => {
+      // Check if the word is complex (removing punctuation for the check)
+      const wordWithoutPunctuation = word.replace(/[.,;:!?"'()]/g, '');
+      const isComplex = isComplexWord(wordWithoutPunctuation);
+      
+      return (
+        <React.Fragment key={i}>
+          <span 
+            className={`cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded ${
+              isComplex ? 'border-b border-dashed border-primary' : ''
+            }`}
+            title={isComplex ? "This may be a complex word" : undefined}
+          >
+            {word}
+          </span>
+          {i < text.split(' ').length - 1 ? ' ' : ''}
+        </React.Fragment>
+      );
+    });
   };
 
   return (
