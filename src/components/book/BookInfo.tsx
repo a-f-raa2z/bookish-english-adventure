@@ -3,7 +3,11 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Book, Clock, Calendar, Award } from 'lucide-react';
 
-const BookInfo = () => {
+interface BookInfoProps {
+  hideBookCover?: boolean;
+}
+
+const BookInfo: React.FC<BookInfoProps> = ({ hideBookCover = false }) => {
   return (
     <div className="space-y-4 sticky top-24">
       <Card>
@@ -15,13 +19,15 @@ const BookInfo = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div>
-              <img 
-                src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg" 
-                alt="Atomic Habits Book Cover" 
-                className="w-full h-auto rounded-md shadow-md"
-              />
-            </div>
+            {!hideBookCover && (
+              <div>
+                <img 
+                  src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg" 
+                  alt="Atomic Habits Book Cover" 
+                  className="w-full h-auto rounded-md shadow-md"
+                />
+              </div>
+            )}
             
             <div className="space-y-3">
               <div className="flex items-start gap-3">

@@ -42,20 +42,29 @@ const BookDetail = () => {
                 <Badge variant="secondary">self-help</Badge>
               </div>
               
-              <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                  <Headphones className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Listen to this book</span>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="col-span-1">
+                  <img 
+                    src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg" 
+                    alt="Atomic Habits Book Cover" 
+                    className="w-full h-auto rounded-md shadow-md"
+                  />
                 </div>
-                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                  <Clock className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Summary</span>
-                  <span className="text-xs text-muted-foreground">19min</span>
-                </div>
-                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                  <Headphones className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">Podcast</span>
-                  <span className="text-xs text-muted-foreground">10min</span>
+                <div className="col-span-2 flex flex-col justify-center gap-4">
+                  <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                    <Headphones className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Listen to this book</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                    <Clock className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Summary</span>
+                    <span className="text-xs text-muted-foreground">19min</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                    <Headphones className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">Podcast</span>
+                    <span className="text-xs text-muted-foreground">10min</span>
+                  </div>
                 </div>
               </div>
               
@@ -68,7 +77,7 @@ const BookDetail = () => {
             <BookContent bookId={bookId || 'atomic-habits'} />
           </div>
           <div className="lg:col-span-4">
-            <BookInfo />
+            <BookInfo hideBookCover={true} />
           </div>
         </div>
       </main>
