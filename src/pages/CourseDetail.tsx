@@ -1,18 +1,25 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
-import CourseOverview from '@/components/CourseOverview';
-import CourseLevels from '@/components/CourseLevels';
 import Footer from '@/components/Footer';
+import BookContent from '@/components/BookContent';
+import LanguageSelector from '@/components/LanguageSelector';
 
 const CourseDetail = () => {
+  const [currentLanguage, setCurrentLanguage] = useState('english');
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
-      <Hero />
-      <CourseOverview />
-      <CourseLevels />
+      <main className="container mx-auto px-4 py-8 max-w-5xl">
+        <div className="flex justify-end mb-4">
+          <LanguageSelector 
+            currentLanguage={currentLanguage} 
+            onLanguageChange={setCurrentLanguage} 
+          />
+        </div>
+        <BookContent currentLanguage={currentLanguage} />
+      </main>
       <Footer />
     </div>
   );
