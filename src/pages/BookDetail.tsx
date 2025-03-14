@@ -29,8 +29,8 @@ const BookDetail = () => {
               />
             </div>
             
-            {/* Book details (6 columns) */}
-            <div className="md:col-span-6">
+            {/* Book details (9 columns) */}
+            <div className="md:col-span-9">
               <h1 className="text-3xl font-bold mb-2">Atomic Habits</h1>
               <p className="text-xl text-muted-foreground mb-4">An Easy & Proven Way to Build Good Habits & Break Bad Ones</p>
               
@@ -53,23 +53,23 @@ const BookDetail = () => {
                 <Badge variant="secondary">personal-development</Badge>
                 <Badge variant="secondary">self-help</Badge>
               </div>
-            </div>
-            
-            {/* Reading options (3 columns) */}
-            <div className="md:col-span-3 flex flex-col justify-center gap-4">
-              <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                <Headphones className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Listen to this book</span>
-              </div>
-              <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                <FileText className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Summary</span>
-                <span className="text-xs text-muted-foreground">19min</span>
-              </div>
-              <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
-                <Headphones className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium">Podcast</span>
-                <span className="text-xs text-muted-foreground">10min</span>
+              
+              {/* Reading options moved below tags */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                  <Headphones className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Listen to this book</span>
+                </div>
+                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Summary</span>
+                  <span className="text-xs text-muted-foreground">19min</span>
+                </div>
+                <div className="flex items-center gap-2 bg-muted px-3 py-1.5 rounded-md">
+                  <Headphones className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">Podcast</span>
+                  <span className="text-xs text-muted-foreground">10min</span>
+                </div>
               </div>
             </div>
           </div>
@@ -105,18 +105,32 @@ const BookDetail = () => {
               <TabsContent value="summary" className="p-4 border rounded-md mt-4">
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Key Takeaways</h3>
                 <div className="prose max-w-none">
-                  <p>Atomic Habits offers a proven framework for improving every day. James Clear reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.</p>
+                  <h4 className="font-semibold mt-4">Introduction</h4>
+                  <p>In a society that often celebrates dramatic changes, the impact of small and gradual improvements is frequently overlooked. James Clear, a leading expert on habits, draws from both in-depth research and his own experiences to provide a framework for transforming productivity and personal growth. His work demonstrates how even the smallest daily decisions accumulate over time, driving significant transformations without causing major disruptions.</p>
                   
-                  <h4 className="font-semibold mt-4">The Four Laws of Behavior Change</h4>
-                  <ol className="list-decimal pl-5 mt-2 space-y-2">
-                    <li><strong>Make it obvious.</strong> The more obvious a cue is, the more likely it is to trigger a habit. Design your environment to make cues for good habits visible and cues for bad habits invisible.</li>
-                    <li><strong>Make it attractive.</strong> The more attractive an opportunity is, the more likely it is to become habit-forming. Pair an action you want to do with an action you need to do.</li>
-                    <li><strong>Make it easy.</strong> The easier a habit is, the more likely it is to form. Reduce friction for good habits and increase friction for bad habits.</li>
-                    <li><strong>Make it satisfying.</strong> We're more likely to repeat a behavior when the experience is satisfying. Use immediate rewards to increase the rate at which you perform a behavior.</li>
-                  </ol>
+                  <p className="mt-3">The effect of improving by just 1% each day is transformative. Clear illustrates this idea through the story of the British cycling team, showing how continuous and small improvements sparked an era of extraordinary success. By distilling the habit-building process into four simple principles, Clear provides you with actionable strategies to make positive behaviors easier to adopt and negative ones more difficult to maintain.</p>
                   
-                  <h4 className="font-semibold mt-4">Identity-Based Habits</h4>
-                  <p>Focus on who you want to become, not what you want to achieve. The most effective way to change your habits is to focus not on what you want to achieve, but on who you wish to become.</p>
+                  <p className="mt-3">James Clear wrote his book after experiencing the significant changes that small habits made in his own life. His clear and relatable writing style simplifies the science of habits, transforming it into an inspiring path of self-discovery and empowerment. As you see these insights, you'll feel motivated to leverage the power of atomic habits, turning everyday routines into gateways to a remarkable life.</p>
+                  
+                  <h4 className="font-semibold mt-4">1. Small habits lead to big changes over time.</h4>
+                  <p>Did you know that the fate of British Cycling changed dramatically thanks to tiny, almost invisible changes? In 2003, British Cycling was struggling, having won just a single Olympic gold medal in nearly a century. But when Dave Brailsford took over as performance director, he had a revolutionary idea: focus on improving everything by just 1%. This approach, known as "the aggregation of marginal gains," turned the team's fortunes around in a way that nobody could have predicted.</p>
+                  
+                  <p className="mt-3">Brailsford's strategy was all about finding those small, seemingly insignificant improvements in everything related to cycling. The team redesigned bike seats for comfort, used alcohol to clean tires for better grip, and even experimented with different massage gels for quicker muscle recovery. They made tiny tweaks, like painting the inside of their truck white to spot dust that could affect bike performance. Each change was minor, but together, they added up to something monumental.</p>
+                  
+                  <p className="mt-3">By 2008, just five years after implementing these small changes, British cyclists won 60% of the gold medals available at the Beijing Olympics. Four years later, they set nine Olympic records in London. These tiny improvements compounded over time, leading to a series of victories and world records that made British Cycling the most successful team in the sport's history.</p>
+                  
+                  <p className="mt-3">This story beautifully illustrates the power of small habits. We often fall into the trap of thinking that success requires massive action. But in reality, it's the small, consistent improvements that lead to significant changes over time. If you improve by just 1% each day, by the end of the year, you'll be 37 times better. On the flip side, getting 1% worse each day can lead you to almost zero progress.</p>
+                  
+                  <p className="mt-3">Habits are like the compound interest of self-improvement. Just as money grows over time through compound interest, the effects of your habits multiply as you repeat them. They might seem insignificant day-to-day, but over months and years, they can lead to enormous results. It's only when we look back over a long period that we can truly appreciate the impact of our habits.</p>
+                  
+                  <p className="mt-3">The challenge is that small changes often don't seem to matter in the moment. If you save a little money today, you're not instantly wealthy. If you exercise for a week, you might not see immediate physical changes. This slow pace can be discouraging, making it easy to revert to old habits. But remember, the impact of habits is like the effect of shifting an airplane's course by a few degrees. It might not seem like much at first, but over time, it can lead you to a completely different destination.</p>
+                  
+                  <p className="mt-3">The key takeaway here is to focus on your trajectory rather than your current results. Whether you're trying to save money, get fit, or learn a new skill, it's the small daily habits that determine your future. Good habits make time your ally, while bad habits make time your enemy. So, the next time you're tempted to overlook a small change, remember the British Cycling team and how those tiny improvements led to extraordinary success.</p>
+                  
+                  <div className="flex justify-between items-center mt-6 mb-2">
+                    <h4 className="font-semibold">Paragraph Translation</h4>
+                    <LanguageSelector />
+                  </div>
                 </div>
               </TabsContent>
               

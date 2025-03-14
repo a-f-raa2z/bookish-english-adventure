@@ -11,7 +11,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
       <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2">Introduction</h4>
+        <h4 className="font-medium mb-2">• Introduction</h4>
         <ol className="list-decimal pl-5 space-y-2">
           <li>Small habits lead to big changes over time.</li>
           <li>Be aware of habits and plan when and where to act.</li>
@@ -23,7 +23,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
       </div>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2">Conclusion</h4>
+        <h4 className="font-medium mb-2">• Conclusion</h4>
         <p>
           Atomic Habits provides a clear framework for improving daily. Small changes, 
           consistently applied, lead to remarkable results over time.
