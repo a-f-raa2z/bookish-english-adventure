@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -27,7 +28,7 @@ const BookDetail = () => {
         const rect = e.target.getBoundingClientRect();
         setPopupPosition({
           x: rect.left + window.scrollX + (rect.width / 2),
-          y: rect.top + window.scrollY - 10
+          y: rect.top + window.scrollY - 20 // Add more space (20px instead of 10px)
         });
         
         setSelectedWord(word.trim());

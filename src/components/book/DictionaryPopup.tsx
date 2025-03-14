@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BookOpen, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
