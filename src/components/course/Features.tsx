@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { BookOpen, HeadphonesIcon, MessageSquare, Pencil, Brain, CheckCircle2 } from 'lucide-react';
+import { BookOpen, HeadphonesIcon, MessageSquare, Brain, CheckCircle2 } from 'lucide-react';
 
 type FeatureProps = {
   icon: React.ReactNode;
@@ -12,7 +11,7 @@ const features = [
   {
     icon: <BookOpen className="h-6 w-6 text-primary" />,
     title: "Structured Reading",
-    description: "Improve English naturally through bestselling books with structured lessons and exercises."
+    description: "Improve English naturally through bestselling books with structured lessons, book summaries, and podcasts. Engage with key ideas, expand vocabulary, and reinforce comprehension through guided exercises and discussions."
   },
   {
     icon: <MessageSquare className="h-6 w-6 text-primary" />,
@@ -28,11 +27,6 @@ const features = [
     icon: <HeadphonesIcon className="h-6 w-6 text-primary" />,
     title: "Listening & Speaking",
     description: "Enhance listening and speaking skills through book summaries and podcast discussions."
-  },
-  {
-    icon: <Pencil className="h-6 w-6 text-primary" />,
-    title: "Writing Improvement",
-    description: "Strengthen writing abilities with structured exercises and reflections on book concepts."
   }
 ];
 
