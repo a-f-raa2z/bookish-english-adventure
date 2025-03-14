@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BookContent from '@/components/book/BookContent';
 import LanguageSelector from '@/components/book/LanguageSelector';
+import DictionaryPopup from '@/components/book/DictionaryPopup';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Star, Headphones, Clock, FileText, Globe } from 'lucide-react';
@@ -14,6 +15,34 @@ const BookDetail = () => {
   const [activeTab, setActiveTab] = useState<string>("summary");
   const [language, setLanguage] = useState('en');
   const [translatedParagraphs, setTranslatedParagraphs] = useState<Record<number, boolean>>({});
+  
+  // Dictionary popup state
+  const [selectedWord, setSelectedWord] = useState<string>('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  const handleWordClick = (e: React.MouseEvent) => {
+    if (e.target instanceof HTMLElement && e.target.tagName === 'SPAN') {
+      const word = e.target.textContent || '';
+      if (word.trim()) {
+        setSelectedWord(word.trim());
+        setIsPopupOpen(true);
+      }
+    }
+  };
+  
+  // Wrap text in spans to make words clickable
+  const wrapWordsInSpans = (text: string) => {
+    return text.split(' ').map((word, i) => (
+      <React.Fragment key={i}>
+        <span 
+          className="cursor-pointer hover:bg-muted hover:text-primary px-0.5 rounded"
+        >
+          {word}
+        </span>
+        {i < text.split(' ').length - 1 ? ' ' : ''}
+      </React.Fragment>
+    ));
+  };
   
   const toggleTranslation = (paragraphIndex: number) => {
     setTranslatedParagraphs(prev => ({
@@ -60,6 +89,14 @@ const BookDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-8">
+        {/* Dictionary popup */}
+        <DictionaryPopup 
+          word={selectedWord} 
+          language={language} 
+          isOpen={isPopupOpen} 
+          onOpenChange={setIsPopupOpen} 
+        />
+        
         {/* Top row with all book information */}
         <div className="mb-8 p-6 bg-card rounded-lg border shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
@@ -145,14 +182,14 @@ const BookDetail = () => {
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="summary" className="p-4 border rounded-md mt-4">
+              <TabsContent value="summary" className="p-4 border rounded-md mt-4" onClick={handleWordClick}>
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Key Takeaways</h3>
                 <div className="prose max-w-none">
                   <h4 className="font-semibold mt-4">Introduction</h4>
                   
                   {summaryParagraphs.map((paragraph, index) => (
                     <div key={`intro-${index}`} className="mb-4">
-                      <p>{paragraph}</p>
+                      <p>{wrapWordsInSpans(paragraph)}</p>
                       <div className="flex justify-end">
                         <button 
                           onClick={() => toggleTranslation(index)} 
@@ -176,7 +213,7 @@ const BookDetail = () => {
                     const actualIndex = index + summaryParagraphs.length;
                     return (
                       <div key={`main-${index}`} className="mb-4">
-                        <p>{paragraph}</p>
+                        <p>{wrapWordsInSpans(paragraph)}</p>
                         <div className="flex justify-end">
                           <button 
                             onClick={() => toggleTranslation(actualIndex)} 
@@ -197,18 +234,18 @@ const BookDetail = () => {
                 </div>
               </TabsContent>
               
-              <TabsContent value="podcast" className="p-4 border rounded-md mt-4">
+              <TabsContent value="podcast" className="p-4 border rounded-md mt-4" onClick={handleWordClick}>
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Podcast Script</h3>
                 <div className="prose max-w-none">
-                  <p><strong>Host:</strong> Welcome to today's episode where we dive into James Clear's bestselling book, Atomic Habits. This book has changed the way millions of people think about progress and personal improvement.</p>
+                  <p>{wrapWordsInSpans("<strong>Host:</strong> Welcome to today's episode where we dive into James Clear's bestselling book, Atomic Habits. This book has changed the way millions of people think about progress and personal improvement.")}</p>
                   
-                  <p className="mt-3"><strong>Host:</strong> Clear's central idea is that small, incremental changes compound over time to produce remarkable results. He calls these small changes "atomic habits" - tiny changes that are both small and mighty.</p>
+                  <p className="mt-3">{wrapWordsInSpans("<strong>Host:</strong> Clear's central idea is that small, incremental changes compound over time to produce remarkable results. He calls these small changes \"atomic habits\" - tiny changes that are both small and mighty.")}</p>
                   
-                  <p className="mt-3"><strong>Guest:</strong> What I found most powerful about this book is how it breaks down the process of habit formation into practical, actionable steps. Clear doesn't just tell you to form good habits; he gives you a system to actually do it.</p>
+                  <p className="mt-3">{wrapWordsInSpans("<strong>Guest:</strong> What I found most powerful about this book is how it breaks down the process of habit formation into practical, actionable steps. Clear doesn't just tell you to form good habits; he gives you a system to actually do it.")}</p>
                   
-                  <p className="mt-3"><strong>Host:</strong> Exactly! And one of the most compelling concepts is the idea that habits are the compound interest of self-improvement. Just as money multiplies through compound interest, the effects of your habits multiply as you repeat them.</p>
+                  <p className="mt-3">{wrapWordsInSpans("<strong>Host:</strong> Exactly! And one of the most compelling concepts is the idea that habits are the compound interest of self-improvement. Just as money multiplies through compound interest, the effects of your habits multiply as you repeat them.")}</p>
                   
-                  <p className="mt-3"><strong>Guest:</strong> I particularly like his emphasis on systems over goals. As Clear puts it, "You do not rise to the level of your goals. You fall to the level of your systems." This reframes how we should think about achievement.</p>
+                  <p className="mt-3">{wrapWordsInSpans("<strong>Guest:</strong> I particularly like his emphasis on systems over goals. As Clear puts it, \"You do not rise to the level of your goals. You fall to the level of your systems.\" This reframes how we should think about achievement.")}</p>
                 </div>
               </TabsContent>
             </Tabs>
