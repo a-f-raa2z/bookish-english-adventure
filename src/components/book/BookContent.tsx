@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
+import { Triangle } from 'lucide-react';
 
 interface BookContentProps {
   bookId: string;
+  currentPlayingParagraph?: number;
 }
 
-const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
+const BookContent: React.FC<BookContentProps> = ({ bookId, currentPlayingParagraph = -1 }) => {
   // Dictionary popup state
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -56,6 +58,24 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
     });
   };
 
+  // Create a paragraph renderer that shows the triangle marker if it's currently playing
+  const renderParagraph = (content: JSX.Element, index: number) => {
+    const isPlaying = index === currentPlayingParagraph;
+    
+    return (
+      <div key={index} className="relative">
+        {isPlaying && (
+          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+            <Triangle className="h-4 w-4 text-primary fill-primary" />
+          </div>
+        )}
+        <div className={`${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
+          {content}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="prose max-w-none px-1" onClick={handleWordClick}>
       {/* Dictionary popup */}
@@ -72,28 +92,41 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
       <div className="mb-6">
         <h4 className="font-medium mb-2">• Introduction</h4>
         <ol className="list-decimal pl-5 space-y-2">
-          <li>{wrapWordsInSpans("Small habits lead to big changes over time.")}</li>
-          <li>{wrapWordsInSpans("Be aware of habits and plan when and where to act.")}</li>
-          <li>{wrapWordsInSpans("Shape your environment to make good habits easier.")}</li>
-          <li>{wrapWordsInSpans("Make habits appealing and simple to increase success.")}</li>
-          <li>{wrapWordsInSpans("Reward yourself and track habits to keep going.")}</li>
-          <li>{wrapWordsInSpans("Regularly review habits to keep improving.")}</li>
+          {[
+            "Small habits lead to big changes over time.",
+            "Be aware of habits and plan when and where to act.",
+            "Shape your environment to make good habits easier.",
+            "Make habits appealing and simple to increase success.",
+            "Reward yourself and track habits to keep going.",
+            "Regularly review habits to keep improving."
+          ].map((text, index) => renderParagraph(
+            <li>{wrapWordsInSpans(text)}</li>,
+            index
+          ))}
         </ol>
       </div>
       
       <div className="mb-6">
         <h4 className="font-medium mb-2">• Conclusion</h4>
-        <p>
-          {wrapWordsInSpans("Atomic Habits provides a clear framework for improving daily. Small changes, consistently applied, lead to remarkable results over time.")}
-        </p>
+        {renderParagraph(
+          <p>
+            {wrapWordsInSpans("Atomic Habits provides a clear framework for improving daily. Small changes, consistently applied, lead to remarkable results over time.")}
+          </p>,
+          6
+        )}
       </div>
       
       <div>
         <h4 className="font-medium mb-2">Similar Books</h4>
         <ul className="list-disc pl-5 space-y-1">
-          <li>{wrapWordsInSpans("The Power of Habit by Charles Duhigg")}</li>
-          <li>{wrapWordsInSpans("Tiny Habits by BJ Fogg")}</li>
-          <li>{wrapWordsInSpans("Deep Work by Cal Newport")}</li>
+          {[
+            "The Power of Habit by Charles Duhigg",
+            "Tiny Habits by BJ Fogg",
+            "Deep Work by Cal Newport"
+          ].map((text, index) => renderParagraph(
+            <li>{wrapWordsInSpans(text)}</li>,
+            index + 7
+          ))}
         </ul>
       </div>
     </div>

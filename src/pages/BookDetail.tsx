@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BookContent from '@/components/book/BookContent';
 import LanguageSelector from '@/components/book/LanguageSelector';
 import DictionaryPopup from '@/components/book/DictionaryPopup';
+import AudioPlayer from '@/components/book/AudioPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Star, Headphones, Clock, FileText, Globe } from 'lucide-react';
@@ -20,6 +21,9 @@ const BookDetail = () => {
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  
+  // Track which paragraph is currently being played
+  const [currentPlayingParagraph, setCurrentPlayingParagraph] = useState<number>(-1);
   
   const handleWordClick = (e: React.MouseEvent) => {
     if (e.target instanceof HTMLElement && e.target.tagName === 'SPAN') {
@@ -97,6 +101,42 @@ const BookDetail = () => {
     "The key takeaway here is to focus on your trajectory rather than your current results. Whether you're trying to save money, get fit, or learn a new skill, it's the small daily habits that determine your future. Good habits make time your ally, while bad habits make time your enemy. So, the next time you're tempted to overlook a small change, remember the British Cycling team and how those tiny improvements led to extraordinary success."
   ];
   
+  const allParagraphs = [...summaryParagraphs, ...mainStoryParagraphs];
+  
+  // Create a paragraph renderer that shows a triangle marker if it's currently playing
+  const renderParagraph = (paragraph: string, index: number) => {
+    const isPlaying = index === currentPlayingParagraph;
+    
+    return (
+      <div key={`paragraph-${index}`} className="mb-4 relative">
+        <div className="flex">
+          {isPlaying && (
+            <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+              <Triangle className="h-4 w-4 text-primary fill-primary" />
+            </div>
+          )}
+          <div className={`flex-1 ${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
+            <p>{wrapWordsInSpans(paragraph)}</p>
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <button 
+            onClick={() => toggleTranslation(index)} 
+            className="flex items-center text-xs text-primary mt-1 hover:underline"
+          >
+            <Globe className="h-3 w-3 mr-1" />
+            {translatedParagraphs[index] ? 'Hide translation' : 'Translate'}
+          </button>
+        </div>
+        {translatedParagraphs[index] && (
+          <div className="mt-2 p-3 bg-muted rounded-md text-sm">
+            {getTranslation(paragraph, language)}
+          </div>
+        )}
+      </div>
+    );
+  };
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -166,7 +206,10 @@ const BookDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-4">
             <h2 className="text-2xl font-semibold mb-6">Content</h2>
-            <BookContent bookId={bookId || 'atomic-habits'} />
+            <BookContent 
+              bookId={bookId || 'atomic-habits'} 
+              currentPlayingParagraph={currentPlayingParagraph}
+            />
           </div>
           
           <div className="lg:col-span-8">
@@ -174,6 +217,12 @@ const BookDetail = () => {
               <h2 className="text-2xl font-semibold">Book Formats</h2>
               <LanguageSelector onLanguageChange={setLanguage} />
             </div>
+            
+            {/* Add audio player at the top */}
+            <AudioPlayer 
+              paragraphs={allParagraphs}
+              onParagraphChange={setCurrentPlayingParagraph}
+            />
             
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="w-full grid grid-cols-2">
@@ -192,50 +241,11 @@ const BookDetail = () => {
                 <div className="prose max-w-none">
                   <h4 className="font-semibold mt-4">Introduction</h4>
                   
-                  {summaryParagraphs.map((paragraph, index) => (
-                    <div key={`intro-${index}`} className="mb-4">
-                      <p>{wrapWordsInSpans(paragraph)}</p>
-                      <div className="flex justify-end">
-                        <button 
-                          onClick={() => toggleTranslation(index)} 
-                          className="flex items-center text-xs text-primary mt-1 hover:underline"
-                        >
-                          <Globe className="h-3 w-3 mr-1" />
-                          {translatedParagraphs[index] ? 'Hide translation' : 'Translate'}
-                        </button>
-                      </div>
-                      {translatedParagraphs[index] && (
-                        <div className="mt-2 p-3 bg-muted rounded-md text-sm">
-                          {getTranslation(paragraph, language)}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                  {summaryParagraphs.map((paragraph, index) => renderParagraph(paragraph, index))}
                   
                   <h4 className="font-semibold mt-4">1. Small habits lead to big changes over time.</h4>
                   
-                  {mainStoryParagraphs.map((paragraph, index) => {
-                    const actualIndex = index + summaryParagraphs.length;
-                    return (
-                      <div key={`main-${index}`} className="mb-4">
-                        <p>{wrapWordsInSpans(paragraph)}</p>
-                        <div className="flex justify-end">
-                          <button 
-                            onClick={() => toggleTranslation(actualIndex)} 
-                            className="flex items-center text-xs text-primary mt-1 hover:underline"
-                          >
-                            <Globe className="h-3 w-3 mr-1" />
-                            {translatedParagraphs[actualIndex] ? 'Hide translation' : 'Translate'}
-                          </button>
-                        </div>
-                        {translatedParagraphs[actualIndex] && (
-                          <div className="mt-2 p-3 bg-muted rounded-md text-sm">
-                            {getTranslation(paragraph, language)}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                  {mainStoryParagraphs.map((paragraph, index) => renderParagraph(paragraph, index + summaryParagraphs.length))}
                 </div>
               </TabsContent>
               
