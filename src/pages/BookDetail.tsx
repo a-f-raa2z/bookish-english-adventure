@@ -7,11 +7,54 @@ import BookContent from '@/components/book/BookContent';
 import LanguageSelector from '@/components/book/LanguageSelector';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Star, Headphones, Clock, FileText } from 'lucide-react';
+import { Star, Headphones, Clock, FileText, Globe } from 'lucide-react';
 
 const BookDetail = () => {
   const { bookId } = useParams<{ bookId: string }>();
   const [activeTab, setActiveTab] = useState<string>("summary");
+  const [language, setLanguage] = useState('en');
+  const [translatedParagraphs, setTranslatedParagraphs] = useState<Record<number, boolean>>({});
+  
+  const toggleTranslation = (paragraphIndex: number) => {
+    setTranslatedParagraphs(prev => ({
+      ...prev,
+      [paragraphIndex]: !prev[paragraphIndex]
+    }));
+  };
+  
+  // Mock translations for demonstration
+  const getTranslation = (text: string, lang: string) => {
+    if (lang === 'es') return `[Spanish] ${text.substring(0, 50)}...`;
+    if (lang === 'fr') return `[French] ${text.substring(0, 50)}...`;
+    if (lang === 'de') return `[German] ${text.substring(0, 50)}...`;
+    if (lang === 'zh') return `[Chinese] ${text.substring(0, 50)}...`;
+    return text;
+  };
+  
+  // Sample paragraphs from the summary
+  const summaryParagraphs = [
+    "In a society that often celebrates dramatic changes, the impact of small and gradual improvements is frequently overlooked. James Clear, a leading expert on habits, draws from both in-depth research and his own experiences to provide a framework for transforming productivity and personal growth. His work demonstrates how even the smallest daily decisions accumulate over time, driving significant transformations without causing major disruptions.",
+    
+    "The effect of improving by just 1% each day is transformative. Clear illustrates this idea through the story of the British cycling team, showing how continuous and small improvements sparked an era of extraordinary success. By distilling the habit-building process into four simple principles, Clear provides you with actionable strategies to make positive behaviors easier to adopt and negative ones more difficult to maintain.",
+    
+    "James Clear wrote his book after experiencing the significant changes that small habits made in his own life. His clear and relatable writing style simplifies the science of habits, transforming it into an inspiring path of self-discovery and empowerment. As you see these insights, you'll feel motivated to leverage the power of atomic habits, turning everyday routines into gateways to a remarkable life."
+  ];
+  
+  const mainStoryParagraphs = [
+    "Did you know that the fate of British Cycling changed dramatically thanks to tiny, almost invisible changes? In 2003, British Cycling was struggling, having won just a single Olympic gold medal in nearly a century. But when Dave Brailsford took over as performance director, he had a revolutionary idea: focus on improving everything by just 1%. This approach, known as "the aggregation of marginal gains," turned the team's fortunes around in a way that nobody could have predicted.",
+    
+    "Brailsford's strategy was all about finding those small, seemingly insignificant improvements in everything related to cycling. The team redesigned bike seats for comfort, used alcohol to clean tires for better grip, and even experimented with different massage gels for quicker muscle recovery. They made tiny tweaks, like painting the inside of their truck white to spot dust that could affect bike performance. Each change was minor, but together, they added up to something monumental.",
+    
+    "By 2008, just five years after implementing these small changes, British cyclists won 60% of the gold medals available at the Beijing Olympics. Four years later, they set nine Olympic records in London. These tiny improvements compounded over time, leading to a series of victories and world records that made British Cycling the most successful team in the sport's history.",
+    
+    "This story beautifully illustrates the power of small habits. We often fall into the trap of thinking that success requires massive action. But in reality, it's the small, consistent improvements that lead to significant changes over time. If you improve by just 1% each day, by the end of the year, you'll be 37 times better. On the flip side, getting 1% worse each day can lead you to almost zero progress.",
+    
+    "Habits are like the compound interest of self-improvement. Just as money grows over time through compound interest, the effects of your habits multiply as you repeat them. They might seem insignificant day-to-day, but over months and years, they can lead to enormous results. It's only when we look back over a long period that we can truly appreciate the impact of our habits.",
+    
+    "The challenge is that small changes often don't seem to matter in the moment. If you save a little money today, you're not instantly wealthy. If you exercise for a week, you might not see immediate physical changes. This slow pace can be discouraging, making it easy to revert to old habits. But remember, the impact of habits is like the effect of shifting an airplane's course by a few degrees. It might not seem like much at first, but over time, it can lead you to a completely different destination.",
+    
+    "The key takeaway here is to focus on your trajectory rather than your current results. Whether you're trying to save money, get fit, or learn a new skill, it's the small daily habits that determine your future. Good habits make time your ally, while bad habits make time your enemy. So, the next time you're tempted to overlook a small change, remember the British Cycling team and how those tiny improvements led to extraordinary success."
+  ];
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -87,7 +130,7 @@ const BookDetail = () => {
           <div className="lg:col-span-8">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-semibold">Book Formats</h2>
-              <LanguageSelector />
+              <LanguageSelector onLanguageChange={setLanguage} />
             </div>
             
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -106,31 +149,51 @@ const BookDetail = () => {
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Key Takeaways</h3>
                 <div className="prose max-w-none">
                   <h4 className="font-semibold mt-4">Introduction</h4>
-                  <p>In a society that often celebrates dramatic changes, the impact of small and gradual improvements is frequently overlooked. James Clear, a leading expert on habits, draws from both in-depth research and his own experiences to provide a framework for transforming productivity and personal growth. His work demonstrates how even the smallest daily decisions accumulate over time, driving significant transformations without causing major disruptions.</p>
                   
-                  <p className="mt-3">The effect of improving by just 1% each day is transformative. Clear illustrates this idea through the story of the British cycling team, showing how continuous and small improvements sparked an era of extraordinary success. By distilling the habit-building process into four simple principles, Clear provides you with actionable strategies to make positive behaviors easier to adopt and negative ones more difficult to maintain.</p>
-                  
-                  <p className="mt-3">James Clear wrote his book after experiencing the significant changes that small habits made in his own life. His clear and relatable writing style simplifies the science of habits, transforming it into an inspiring path of self-discovery and empowerment. As you see these insights, you'll feel motivated to leverage the power of atomic habits, turning everyday routines into gateways to a remarkable life.</p>
+                  {summaryParagraphs.map((paragraph, index) => (
+                    <div key={`intro-${index}`} className="mb-4">
+                      <p>{paragraph}</p>
+                      <div className="flex justify-end">
+                        <button 
+                          onClick={() => toggleTranslation(index)} 
+                          className="flex items-center text-xs text-primary mt-1 hover:underline"
+                        >
+                          <Globe className="h-3 w-3 mr-1" />
+                          {translatedParagraphs[index] ? 'Hide translation' : 'Translate'}
+                        </button>
+                      </div>
+                      {translatedParagraphs[index] && (
+                        <div className="mt-2 p-3 bg-muted rounded-md text-sm">
+                          {getTranslation(paragraph, language)}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                   
                   <h4 className="font-semibold mt-4">1. Small habits lead to big changes over time.</h4>
-                  <p>Did you know that the fate of British Cycling changed dramatically thanks to tiny, almost invisible changes? In 2003, British Cycling was struggling, having won just a single Olympic gold medal in nearly a century. But when Dave Brailsford took over as performance director, he had a revolutionary idea: focus on improving everything by just 1%. This approach, known as "the aggregation of marginal gains," turned the team's fortunes around in a way that nobody could have predicted.</p>
                   
-                  <p className="mt-3">Brailsford's strategy was all about finding those small, seemingly insignificant improvements in everything related to cycling. The team redesigned bike seats for comfort, used alcohol to clean tires for better grip, and even experimented with different massage gels for quicker muscle recovery. They made tiny tweaks, like painting the inside of their truck white to spot dust that could affect bike performance. Each change was minor, but together, they added up to something monumental.</p>
-                  
-                  <p className="mt-3">By 2008, just five years after implementing these small changes, British cyclists won 60% of the gold medals available at the Beijing Olympics. Four years later, they set nine Olympic records in London. These tiny improvements compounded over time, leading to a series of victories and world records that made British Cycling the most successful team in the sport's history.</p>
-                  
-                  <p className="mt-3">This story beautifully illustrates the power of small habits. We often fall into the trap of thinking that success requires massive action. But in reality, it's the small, consistent improvements that lead to significant changes over time. If you improve by just 1% each day, by the end of the year, you'll be 37 times better. On the flip side, getting 1% worse each day can lead you to almost zero progress.</p>
-                  
-                  <p className="mt-3">Habits are like the compound interest of self-improvement. Just as money grows over time through compound interest, the effects of your habits multiply as you repeat them. They might seem insignificant day-to-day, but over months and years, they can lead to enormous results. It's only when we look back over a long period that we can truly appreciate the impact of our habits.</p>
-                  
-                  <p className="mt-3">The challenge is that small changes often don't seem to matter in the moment. If you save a little money today, you're not instantly wealthy. If you exercise for a week, you might not see immediate physical changes. This slow pace can be discouraging, making it easy to revert to old habits. But remember, the impact of habits is like the effect of shifting an airplane's course by a few degrees. It might not seem like much at first, but over time, it can lead you to a completely different destination.</p>
-                  
-                  <p className="mt-3">The key takeaway here is to focus on your trajectory rather than your current results. Whether you're trying to save money, get fit, or learn a new skill, it's the small daily habits that determine your future. Good habits make time your ally, while bad habits make time your enemy. So, the next time you're tempted to overlook a small change, remember the British Cycling team and how those tiny improvements led to extraordinary success.</p>
-                  
-                  <div className="flex justify-between items-center mt-6 mb-2">
-                    <h4 className="font-semibold">Paragraph Translation</h4>
-                    <LanguageSelector />
-                  </div>
+                  {mainStoryParagraphs.map((paragraph, index) => {
+                    const actualIndex = index + summaryParagraphs.length;
+                    return (
+                      <div key={`main-${index}`} className="mb-4">
+                        <p>{paragraph}</p>
+                        <div className="flex justify-end">
+                          <button 
+                            onClick={() => toggleTranslation(actualIndex)} 
+                            className="flex items-center text-xs text-primary mt-1 hover:underline"
+                          >
+                            <Globe className="h-3 w-3 mr-1" />
+                            {translatedParagraphs[actualIndex] ? 'Hide translation' : 'Translate'}
+                          </button>
+                        </div>
+                        {translatedParagraphs[actualIndex] && (
+                          <div className="mt-2 p-3 bg-muted rounded-md text-sm">
+                            {getTranslation(paragraph, language)}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </TabsContent>
               
