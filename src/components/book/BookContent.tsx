@@ -22,10 +22,13 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
       if (word.trim()) {
         // Get the position of the clicked word
         const rect = e.target.getBoundingClientRect();
+        
         // Position the popup directly above the word with some space
+        // Using clientY to get the mouse position which is more accurate
         setPopupPosition({
           x: rect.left + window.scrollX + (rect.width / 2),
-          y: rect.top + window.scrollY - 20 // Add more space (20px instead of 10px)
+          // Place it directly above the word
+          y: rect.top + window.scrollY - 50 // Increase space to make it more noticeable
         });
         
         setSelectedWord(word.trim());

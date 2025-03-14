@@ -28,7 +28,8 @@ const BookDetail = () => {
         const rect = e.target.getBoundingClientRect();
         setPopupPosition({
           x: rect.left + window.scrollX + (rect.width / 2),
-          y: rect.top + window.scrollY - 20 // Add more space (20px instead of 10px)
+          // Place it directly above the word with more space
+          y: rect.top + window.scrollY - 50
         });
         
         setSelectedWord(word.trim());
