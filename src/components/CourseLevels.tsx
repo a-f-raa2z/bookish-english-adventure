@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { BookOpenCheck, GraduationCap, BookOpen } from 'lucide-react';
+import { BookOpenCheck, GraduationCap, BookOpen, ChevronRight } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
