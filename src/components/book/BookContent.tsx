@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
@@ -56,7 +57,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
   };
 
   return (
-    <div className="prose max-w-none" onClick={handleWordClick}>
+    <div className="prose max-w-none px-1" onClick={handleWordClick}>
       {/* Dictionary popup */}
       <DictionaryPopup 
         word={selectedWord} 

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -99,7 +100,7 @@ const BookDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="flex-grow container mx-auto px-6 md:px-12 py-8 max-w-7xl">
         <DictionaryPopup 
           word={selectedWord} 
           language={language} 
