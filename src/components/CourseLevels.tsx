@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { BookOpenCheck, ChevronRight, GraduationCap, BookOpen } from 'lucide-react';
+import { BookOpenCheck, GraduationCap, BookOpen } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
@@ -186,13 +185,6 @@ const CourseLevels = () => {
                           </CollapsibleContent>
                         </Collapsible>
                       ))}
-                    </div>
-                    
-                    <div className="mt-6 text-right">
-                      <button className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                        <span>View Full Curriculum</span>
-                        <ChevronRight className="h-4 w-4 ml-1" />
-                      </button>
                     </div>
                   </div>
                 </AccordionContent>
