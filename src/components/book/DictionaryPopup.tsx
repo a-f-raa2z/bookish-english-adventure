@@ -103,6 +103,18 @@ const DictionaryPopup: React.FC<DictionaryPopupProps> = ({
 
   if (!isOpen) return null;
 
+  // Get translated language name for display
+  const getLanguageName = (langCode: string): string => {
+    const languages: Record<string, string> = {
+      'en': 'English',
+      'es': 'Spanish',
+      'fr': 'French',
+      'de': 'German',
+      'zh': 'Chinese'
+    };
+    return languages[langCode] || langCode;
+  };
+
   // Create tooltip-like popup positioned above the word
   return (
     <div
@@ -116,7 +128,7 @@ const DictionaryPopup: React.FC<DictionaryPopupProps> = ({
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <BookOpen className="h-4 w-4 text-primary" />
-          <h3 className="font-medium">{wordInfo.word}</h3>
+          <h3 className="font-medium">{word} - {getLanguageName(language)}</h3>
         </div>
         <button onClick={() => onOpenChange(false)} className="text-muted-foreground hover:text-foreground">
           <X className="h-4 w-4" />
