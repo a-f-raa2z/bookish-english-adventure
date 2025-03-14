@@ -18,11 +18,18 @@ const BookDetail = () => {
   
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   
   const handleWordClick = (e: React.MouseEvent) => {
     if (e.target instanceof HTMLElement && e.target.tagName === 'SPAN') {
       const word = e.target.textContent || '';
       if (word.trim()) {
+        const rect = e.target.getBoundingClientRect();
+        setPopupPosition({
+          x: rect.left + window.scrollX + (rect.width / 2),
+          y: rect.top + window.scrollY - 10
+        });
+        
         setSelectedWord(word.trim());
         setIsPopupOpen(true);
       }
@@ -97,7 +104,8 @@ const BookDetail = () => {
           word={selectedWord} 
           language={language} 
           isOpen={isPopupOpen} 
-          onOpenChange={setIsPopupOpen} 
+          onOpenChange={setIsPopupOpen}
+          position={popupPosition}
         />
         
         <div className="mb-8 p-6 bg-card rounded-lg border shadow-sm">
