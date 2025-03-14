@@ -66,7 +66,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId, currentPlayingParagra
       <div key={index} className="relative">
         {isPlaying && (
           <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-            <Triangle className="h-4 w-4 text-primary fill-primary" />
+            <Triangle className="h-4 w-4 text-primary/80 fill-primary/80" />
           </div>
         )}
         <div className={`${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
