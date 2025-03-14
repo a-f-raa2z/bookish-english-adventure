@@ -17,7 +17,9 @@ const CourseOverview = () => {
         </p>
       </div>
       
-      <div className="flex flex-col lg:flex-row gap-8 mb-12">
+      <CourseStructure />
+      
+      <div className="flex flex-col lg:flex-row gap-8 my-12">
         {/* Left column: What You Will Learn and Tags section below it */}
         <div className="flex-1">
           <Features />
@@ -29,8 +31,6 @@ const CourseOverview = () => {
           <CourseTimer />
         </div>
       </div>
-      
-      <CourseStructure />
     </section>
   );
 };
