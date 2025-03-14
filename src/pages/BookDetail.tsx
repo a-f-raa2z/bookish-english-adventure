@@ -41,7 +41,7 @@ const BookDetail = () => {
   ];
   
   const mainStoryParagraphs = [
-    "Did you know that the fate of British Cycling changed dramatically thanks to tiny, almost invisible changes? In 2003, British Cycling was struggling, having won just a single Olympic gold medal in nearly a century. But when Dave Brailsford took over as performance director, he had a revolutionary idea: focus on improving everything by just 1%. This approach, known as "the aggregation of marginal gains," turned the team's fortunes around in a way that nobody could have predicted.",
+    "Did you know that the fate of British Cycling changed dramatically thanks to tiny, almost invisible changes? In 2003, British Cycling was struggling, having won just a single Olympic gold medal in nearly a century. But when Dave Brailsford took over as performance director, he had a revolutionary idea: focus on improving everything by just 1%. This approach, known as \"the aggregation of marginal gains,\" turned the team's fortunes around in a way that nobody could have predicted.",
     
     "Brailsford's strategy was all about finding those small, seemingly insignificant improvements in everything related to cycling. The team redesigned bike seats for comfort, used alcohol to clean tires for better grip, and even experimented with different massage gels for quicker muscle recovery. They made tiny tweaks, like painting the inside of their truck white to spot dust that could affect bike performance. Each change was minor, but together, they added up to something monumental.",
     
