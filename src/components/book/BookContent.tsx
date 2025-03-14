@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
@@ -24,11 +23,10 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
         const rect = e.target.getBoundingClientRect();
         
         // Position the popup directly above the word with some space
-        // Using clientY to get the mouse position which is more accurate
+        // Using the viewport coordinates (client coordinates)
         setPopupPosition({
-          x: rect.left + window.scrollX + (rect.width / 2),
-          // Place it directly above the word
-          y: rect.top + window.scrollY - 50 // Increase space to make it more noticeable
+          x: rect.left + (rect.width / 2),
+          y: rect.top - 15 // Small space above the word
         });
         
         setSelectedWord(word.trim());

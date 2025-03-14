@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BookOpen, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -113,7 +114,7 @@ const DictionaryPopup: React.FC<DictionaryPopupProps> = ({
     return languages[langCode] || langCode;
   };
 
-  // Create tooltip-like popup positioned above the word
+  // Create tooltip-like popup positioned relative to viewport
   return (
     <div
       className="fixed z-50 bg-popover text-popover-foreground shadow-md rounded-md border p-3 w-64"
