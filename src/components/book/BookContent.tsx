@@ -11,6 +11,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
   // Dictionary popup state
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   
   // Default language (could be passed as prop if needed)
   const [language] = useState('en');
@@ -19,6 +20,14 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
     if (e.target instanceof HTMLElement && e.target.tagName === 'SPAN') {
       const word = e.target.textContent || '';
       if (word.trim()) {
+        // Get the position of the clicked word
+        const rect = e.target.getBoundingClientRect();
+        // Position the popup above the word
+        setPopupPosition({
+          x: rect.left + window.scrollX + (rect.width / 2),
+          y: rect.top + window.scrollY - 10
+        });
+        
         setSelectedWord(word.trim());
         setIsPopupOpen(true);
       }
@@ -56,6 +65,7 @@ const BookContent: React.FC<BookContentProps> = ({ bookId }) => {
         language={language} 
         isOpen={isPopupOpen} 
         onOpenChange={setIsPopupOpen} 
+        position={popupPosition}
       />
       
       <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>

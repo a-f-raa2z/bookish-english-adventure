@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { BookOpen, X } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 
 interface DictionaryPopupProps {
@@ -9,6 +9,7 @@ interface DictionaryPopupProps {
   language: string;
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
+  position: { x: number; y: number };
 }
 
 interface WordDefinition {
@@ -21,7 +22,8 @@ const DictionaryPopup: React.FC<DictionaryPopupProps> = ({
   word,
   language,
   isOpen,
-  onOpenChange
+  onOpenChange,
+  position
 }) => {
   // Mock dictionary lookup function
   const getWordDefinition = (word: string, lang: string): WordDefinition => {
@@ -99,31 +101,46 @@ const DictionaryPopup: React.FC<DictionaryPopupProps> = ({
 
   const wordInfo = getWordDefinition(word, language);
 
+  if (!isOpen) return null;
+
+  // Create tooltip-like popup positioned above the word
   return (
-    <Popover open={isOpen} onOpenChange={onOpenChange}>
-      <PopoverTrigger className="hidden"></PopoverTrigger>
-      <PopoverContent className="w-80 p-4" align="center">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-primary" />
-            <h3 className="font-medium">{wordInfo.word}</h3>
-          </div>
-          <button onClick={() => onOpenChange(false)} className="text-muted-foreground hover:text-foreground">
-            <X className="h-4 w-4" />
-          </button>
+    <div
+      className="fixed z-50 bg-popover text-popover-foreground shadow-md rounded-md border p-3 w-64"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        transform: 'translate(-50%, -100%)',
+      }}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <BookOpen className="h-4 w-4 text-primary" />
+          <h3 className="font-medium">{wordInfo.word}</h3>
         </div>
-        
-        <Separator className="my-2" />
-        
-        <div className="mt-2">
-          <p className="text-sm">{wordInfo.definition}</p>
-        </div>
-        
-        <div className="mt-4 text-xs text-muted-foreground">
-          Click anywhere to close
-        </div>
-      </PopoverContent>
-    </Popover>
+        <button onClick={() => onOpenChange(false)} className="text-muted-foreground hover:text-foreground">
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+      
+      <Separator className="my-2" />
+      
+      <div className="mt-2">
+        <p className="text-sm">{wordInfo.definition}</p>
+      </div>
+      
+      {/* Pointer at the bottom of the tooltip */}
+      <div 
+        className="absolute w-3 h-3 bg-popover rotate-45"
+        style={{
+          left: '50%',
+          bottom: '-6px',
+          marginLeft: '-6px',
+          borderRight: '1px solid hsl(var(--border))',
+          borderBottom: '1px solid hsl(var(--border))'
+        }}
+      ></div>
+    </div>
   );
 };
 
