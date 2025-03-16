@@ -1,9 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Progress } from '@/components/ui/progress';
-import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward, Triangle } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, SkipBack, SkipForward } from 'lucide-react';
 
 interface AudioPlayerProps {
   paragraphs: string[];
@@ -17,22 +16,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
   const [volume, setVolume] = useState(80);
   const [isMuted, setIsMuted] = useState(false);
   
-  // Time tracking
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressInterval = useRef<number | null>(null);
   
-  // Mock audio file - in a real implementation, you would use actual audio files
   const audioSrc = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
   
   useEffect(() => {
-    // Create audio element
     const audio = new Audio(audioSrc);
     audioRef.current = audio;
     
-    // Set up event listeners
     audio.addEventListener('loadedmetadata', () => {
       setDuration(audio.duration);
     });
@@ -41,8 +36,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
       setCurrentTime(audio.currentTime);
       setProgress((audio.currentTime / audio.duration) * 100);
       
-      // Simulate paragraph changes
-      // In a real implementation, you would have timestamps for each paragraph
       const paragraphDuration = audio.duration / paragraphs.length;
       const newParagraphIndex = Math.min(
         Math.floor(audio.currentTime / paragraphDuration),
@@ -63,7 +56,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
       onParagraphChange(0);
     });
     
-    // Clean up
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -77,7 +69,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
   }, [paragraphs.length, onParagraphChange]);
   
   useEffect(() => {
-    // Update volume when changed
     if (audioRef.current) {
       audioRef.current.volume = volume / 100;
       audioRef.current.muted = isMuted;
@@ -122,7 +113,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
     setCurrentParagraphIndex(newIndex);
     onParagraphChange(newIndex);
     
-    // Simulate skipping to the beginning of the paragraph
     if (audioRef.current) {
       const paragraphDuration = audioRef.current.duration / paragraphs.length;
       audioRef.current.currentTime = newIndex * paragraphDuration;
@@ -134,14 +124,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
     setCurrentParagraphIndex(newIndex);
     onParagraphChange(newIndex);
     
-    // Simulate skipping to the beginning of the paragraph
     if (audioRef.current) {
       const paragraphDuration = audioRef.current.duration / paragraphs.length;
       audioRef.current.currentTime = newIndex * paragraphDuration;
     }
   };
   
-  // Format time as mm:ss
   const formatTime = (timeInSeconds: number) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = Math.floor(timeInSeconds % 60);
@@ -149,8 +137,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ paragraphs, onParagraphChange
   };
   
   return (
-    <div className="bg-card border rounded-lg p-4 shadow-sm mb-6">
-      <div className="flex items-center gap-3 mb-2">
+    <div className="fixed bottom-0 left-0 right-0 bg-card border-t rounded-t-lg shadow-lg p-4 z-50">
+      <div className="flex items-center gap-3 mb-2 max-w-7xl mx-auto">
         <Button 
           size="icon" 
           variant="ghost" 

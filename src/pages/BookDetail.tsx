@@ -22,6 +22,7 @@ const BookDetail = () => {
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   
   const [currentPlayingParagraph, setCurrentPlayingParagraph] = useState<number>(-1);
+  const [isPlaying, setIsPlaying] = useState(false);
   
   const handleWordClick = (e: React.MouseEvent) => {
     if (e.target instanceof HTMLElement && e.target.tagName === 'SPAN') {
@@ -37,6 +38,11 @@ const BookDetail = () => {
         setIsPopupOpen(true);
       }
     }
+  };
+  
+  const handlePlayParagraph = (index: number) => {
+    setCurrentPlayingParagraph(index);
+    setIsPlaying(true);
   };
   
   const wrapWordsInSpans = (text: string) => {
@@ -137,7 +143,7 @@ const BookDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container mx-auto px-6 md:px-12 py-8 max-w-7xl">
+      <main className="flex-grow container mx-auto px-6 md:px-12 py-8 max-w-7xl mb-24">
         <DictionaryPopup 
           word={selectedWord} 
           language={language} 
@@ -206,6 +212,7 @@ const BookDetail = () => {
             <BookContent 
               bookId={bookId || 'atomic-habits'} 
               currentPlayingParagraph={currentPlayingParagraph}
+              onPlayParagraph={handlePlayParagraph}
             />
           </div>
           
@@ -214,11 +221,6 @@ const BookDetail = () => {
               <h2 className="text-2xl font-semibold">Book Formats</h2>
               <LanguageSelector onLanguageChange={setLanguage} />
             </div>
-            
-            <AudioPlayer 
-              paragraphs={allParagraphs}
-              onParagraphChange={setCurrentPlayingParagraph}
-            />
             
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="w-full grid grid-cols-2">
@@ -263,6 +265,12 @@ const BookDetail = () => {
           </div>
         </div>
       </main>
+      
+      <AudioPlayer 
+        paragraphs={allParagraphs}
+        onParagraphChange={setCurrentPlayingParagraph}
+      />
+      
       <Footer />
     </div>
   );

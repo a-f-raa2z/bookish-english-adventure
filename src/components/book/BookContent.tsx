@@ -2,14 +2,20 @@
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
-import { Triangle } from 'lucide-react';
+import { Play, Triangle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface BookContentProps {
   bookId: string;
   currentPlayingParagraph?: number;
+  onPlayParagraph?: (index: number) => void;
 }
 
-const BookContent: React.FC<BookContentProps> = ({ bookId, currentPlayingParagraph = -1 }) => {
+const BookContent: React.FC<BookContentProps> = ({ 
+  bookId, 
+  currentPlayingParagraph = -1,
+  onPlayParagraph 
+}) => {
   // Dictionary popup state
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -72,6 +78,16 @@ const BookContent: React.FC<BookContentProps> = ({ bookId, currentPlayingParagra
         <div className={`${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
           {content}
         </div>
+        {index === 0 && !isPlaying && onPlayParagraph && (
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+            onClick={() => onPlayParagraph(0)}
+          >
+            <Play className="h-4 w-4 text-primary" />
+          </Button>
+        )}
       </div>
     );
   };
