@@ -8,7 +8,8 @@ import DictionaryPopup from '@/components/book/DictionaryPopup';
 import AudioPlayer from '@/components/book/AudioPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Star, Headphones, Clock, FileText, Globe, ChevronDown } from 'lucide-react';
+import { Star, Headphones, Clock, FileText, Globe, ChevronDown, Triangle, Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { isComplexWord } from '@/utils/complexWordsUtil';
 
 const BookDetail = () => {
@@ -106,6 +107,8 @@ const BookDetail = () => {
   ];
   
   const allParagraphs = [...summaryParagraphs, ...mainStoryParagraphs];
+  
+  const isIntroductionPlaying = currentPlayingParagraph >= 0 && currentPlayingParagraph < 3;
   
   const renderParagraph = (paragraph: string, index: number) => {
     const isPlaying = index === currentPlayingParagraph;
@@ -237,11 +240,45 @@ const BookDetail = () => {
               <TabsContent value="summary" className="p-4 border rounded-md mt-4" onClick={handleWordClick}>
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Key Takeaways</h3>
                 <div className="prose max-w-none">
-                  <h4 className="font-semibold mt-4">Introduction</h4>
+                  <h4 className="font-semibold mt-4 relative">
+                    {isIntroductionPlaying && (
+                      <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+                        <Triangle className="h-4 w-4 text-primary fill-primary" />
+                      </span>
+                    )}
+                    {!isIntroductionPlaying && (
+                      <Button 
+                        size="icon" 
+                        variant="ghost" 
+                        className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                        onClick={() => handlePlayParagraph(0)}
+                      >
+                        <Play className="h-4 w-4 text-primary" />
+                      </Button>
+                    )}
+                    Introduction
+                  </h4>
                   
                   {summaryParagraphs.map((paragraph, index) => renderParagraph(paragraph, index))}
                   
-                  <h4 className="font-semibold mt-4">1. Small habits lead to big changes over time.</h4>
+                  <h4 className="font-semibold mt-4 relative">
+                    {currentPlayingParagraph >= 3 && currentPlayingParagraph < summaryParagraphs.length + 3 && (
+                      <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+                        <Triangle className="h-4 w-4 text-primary fill-primary" />
+                      </span>
+                    )}
+                    {!(currentPlayingParagraph >= 3 && currentPlayingParagraph < summaryParagraphs.length + 3) && (
+                      <Button 
+                        size="icon" 
+                        variant="ghost" 
+                        className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                        onClick={() => handlePlayParagraph(3)}
+                      >
+                        <Play className="h-4 w-4 text-primary" />
+                      </Button>
+                    )}
+                    1. Small habits lead to big changes over time.
+                  </h4>
                   
                   {mainStoryParagraphs.map((paragraph, index) => renderParagraph(paragraph, index + summaryParagraphs.length))}
                 </div>
