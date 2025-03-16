@@ -8,7 +8,7 @@ import DictionaryPopup from '@/components/book/DictionaryPopup';
 import AudioPlayer from '@/components/book/AudioPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Star, Headphones, Clock, FileText, Globe, ChevronDown, Triangle, Play } from 'lucide-react';
+import { Star, Headphones, Clock, FileText, Globe, ChevronDown, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { isComplexWord } from '@/utils/complexWordsUtil';
 
@@ -300,3 +300,4 @@ const BookDetail = () => {
 };
 
 export default BookDetail;
+
