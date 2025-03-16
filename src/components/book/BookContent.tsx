@@ -92,6 +92,9 @@ const BookContent: React.FC<BookContentProps> = ({
     );
   };
 
+  // Determine if introduction section is being played
+  const isIntroductionPlaying = currentPlayingParagraph >= 0 && currentPlayingParagraph <= 5;
+
   return (
     <div className="prose max-w-none px-1" onClick={handleWordClick}>
       {/* Dictionary popup */}
@@ -106,7 +109,24 @@ const BookContent: React.FC<BookContentProps> = ({
       <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2">• Introduction</h4>
+        <h4 className="font-medium mb-2 relative">
+          {isIntroductionPlaying && (
+            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+              <Triangle className="h-4 w-4 text-primary fill-primary" />
+            </span>
+          )}
+          {!isIntroductionPlaying && onPlayParagraph && (
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+              onClick={() => onPlayParagraph(0)}
+            >
+              <Play className="h-4 w-4 text-primary" />
+            </Button>
+          )}
+          • Introduction
+        </h4>
         <ol className="list-decimal pl-5 space-y-2">
           {[
             "Small habits lead to big changes over time.",
@@ -115,33 +135,72 @@ const BookContent: React.FC<BookContentProps> = ({
             "Make habits appealing and simple to increase success.",
             "Reward yourself and track habits to keep going.",
             "Regularly review habits to keep improving."
-          ].map((text, index) => renderParagraph(
-            <li>{wrapWordsInSpans(text)}</li>,
-            index
+          ].map((text, index) => (
+            <li key={index}>
+              <div className={`${index === currentPlayingParagraph ? 'bg-muted/30 p-1 rounded' : ''}`}>
+                {wrapWordsInSpans(text)}
+              </div>
+            </li>
           ))}
         </ol>
       </div>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2">• Conclusion</h4>
-        {renderParagraph(
+        <h4 className="font-medium mb-2 relative">
+          {currentPlayingParagraph === 6 && (
+            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+              <Triangle className="h-4 w-4 text-primary fill-primary" />
+            </span>
+          )}
+          {currentPlayingParagraph !== 6 && onPlayParagraph && (
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+              onClick={() => onPlayParagraph(6)}
+            >
+              <Play className="h-4 w-4 text-primary" />
+            </Button>
+          )}
+          • Conclusion
+        </h4>
+        <div className={`${currentPlayingParagraph === 6 ? 'bg-muted/30 p-1 rounded' : ''}`}>
           <p>
             {wrapWordsInSpans("Atomic Habits provides a clear framework for improving daily. Small changes, consistently applied, lead to remarkable results over time.")}
-          </p>,
-          6
-        )}
+          </p>
+        </div>
       </div>
       
       <div>
-        <h4 className="font-medium mb-2">Similar Books</h4>
+        <h4 className="font-medium mb-2 relative">
+          {currentPlayingParagraph >= 7 && currentPlayingParagraph <= 9 && (
+            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+              <Triangle className="h-4 w-4 text-primary fill-primary" />
+            </span>
+          )}
+          {!(currentPlayingParagraph >= 7 && currentPlayingParagraph <= 9) && onPlayParagraph && (
+            <Button 
+              size="icon" 
+              variant="ghost" 
+              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+              onClick={() => onPlayParagraph(7)}
+            >
+              <Play className="h-4 w-4 text-primary" />
+            </Button>
+          )}
+          Similar Books
+        </h4>
         <ul className="list-disc pl-5 space-y-1">
           {[
             "The Power of Habit by Charles Duhigg",
             "Tiny Habits by BJ Fogg",
             "Deep Work by Cal Newport"
-          ].map((text, index) => renderParagraph(
-            <li>{wrapWordsInSpans(text)}</li>,
-            index + 7
+          ].map((text, index) => (
+            <li key={index}>
+              <div className={`${index + 7 === currentPlayingParagraph ? 'bg-muted/30 p-1 rounded' : ''}`}>
+                {wrapWordsInSpans(text)}
+              </div>
+            </li>
           ))}
         </ul>
       </div>
