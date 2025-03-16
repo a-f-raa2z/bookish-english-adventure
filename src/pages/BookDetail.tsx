@@ -241,42 +241,28 @@ const BookDetail = () => {
                 <h3 className="text-xl font-semibold mb-4">Atomic Habits: Key Takeaways</h3>
                 <div className="prose max-w-none">
                   <h4 className="font-semibold mt-4 relative">
-                    {isIntroductionPlaying && (
-                      <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-                        <Triangle className="h-4 w-4 text-primary fill-primary" />
-                      </span>
-                    )}
-                    {!isIntroductionPlaying && (
-                      <Button 
-                        size="icon" 
-                        variant="ghost" 
-                        className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-                        onClick={() => handlePlayParagraph(0)}
-                      >
-                        <Play className="h-4 w-4 text-primary" />
-                      </Button>
-                    )}
+                    <Button 
+                      size="icon" 
+                      variant="ghost" 
+                      className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                      onClick={() => handlePlayParagraph(0)}
+                    >
+                      <Play className="h-4 w-4 text-primary" />
+                    </Button>
                     Introduction
                   </h4>
                   
                   {summaryParagraphs.map((paragraph, index) => renderParagraph(paragraph, index))}
                   
                   <h4 className="font-semibold mt-4 relative">
-                    {currentPlayingParagraph >= 3 && currentPlayingParagraph < summaryParagraphs.length + 3 && (
-                      <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-                        <Triangle className="h-4 w-4 text-primary fill-primary" />
-                      </span>
-                    )}
-                    {!(currentPlayingParagraph >= 3 && currentPlayingParagraph < summaryParagraphs.length + 3) && (
-                      <Button 
-                        size="icon" 
-                        variant="ghost" 
-                        className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-                        onClick={() => handlePlayParagraph(3)}
-                      >
-                        <Play className="h-4 w-4 text-primary" />
-                      </Button>
-                    )}
+                    <Button 
+                      size="icon" 
+                      variant="ghost" 
+                      className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                      onClick={() => handlePlayParagraph(3)}
+                    >
+                      <Play className="h-4 w-4 text-primary" />
+                    </Button>
                     1. Small habits lead to big changes over time.
                   </h4>
                   
