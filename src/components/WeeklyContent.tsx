@@ -2,6 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Headphones, MessageSquare, Pen, PlayCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+
+// Define progress levels for each week (representing completion percentage)
+const progressByWeek = {
+  1: 100, // Week 1 is complete
+  2: 65,  // Week 2 is 65% complete
+  3: 25,  // Week 3 is 25% complete
+  4: 0    // Week 4 hasn't started
+};
 
 const weeklyTopics = [
   {
@@ -52,6 +62,11 @@ const WeeklyContent = () => {
   
   const handleWeekChange = (week: number) => {
     setActiveWeek(week);
+  };
+
+  const handleStartCourse = () => {
+    // Navigate to the first book or start the course
+    window.location.href = "/book/super-attractor";
   };
 
   useEffect(() => {
@@ -107,8 +122,8 @@ const WeeklyContent = () => {
         {weeklyTopics
           .filter((topic) => topic.week === activeWeek)
           .map((topic) => (
-            <div key={topic.week} className="mb-8 animate-slide-in-right">
-              <div className="text-center mb-10">
+            <div key={topic.week} className="mb-12 animate-slide-in-right">
+              <div className="text-center mb-6">
                 <h3 className="title-small mb-3">
                   Week {topic.week}: {topic.bookLink ? (
                     <Link to={topic.bookLink} className="text-primary hover:underline">
@@ -118,7 +133,27 @@ const WeeklyContent = () => {
                     topic.book
                   )}
                 </h3>
-                <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+                <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                
+                {/* Progress bar for the week */}
+                <div className="max-w-md mx-auto mb-4">
+                  <div className="flex justify-between text-sm mb-1">
+                    <span className="text-muted-foreground">Progress</span>
+                    <span className="font-medium">{progressByWeek[topic.week]}%</span>
+                  </div>
+                  <Progress value={progressByWeek[topic.week]} className="h-2" />
+                </div>
+                
+                {/* Start button for the first week */}
+                {topic.week === 1 && (
+                  <Button 
+                    onClick={handleStartCourse}
+                    className="mt-4 bg-primary text-white hover:bg-primary/90"
+                  >
+                    <PlayCircle className="mr-2 h-5 w-5" />
+                    Start Week 1
+                  </Button>
+                )}
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
