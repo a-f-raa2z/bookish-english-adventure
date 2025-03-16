@@ -65,6 +65,16 @@ const Features = () => {
   return (
     <div className="glass-card p-6">
       <div>
+        <h3 className="text-lg font-semibold mb-4">About the Course</h3>
+        <p className="text-muted-foreground mb-4">
+          This self-paced program is structured into 3 progressive levels, each lasting one month. 
+          In every level, you'll explore 4 bestselling books through concise summaries and companion podcasts (10-15 minutes each). 
+          To reinforce your understanding and sharpen your listening skills, each book also includes 
+          targeted Q&A practice designed to help you master key concepts.
+        </p>
+      </div>
+
+      <div className="mt-8 pt-6 border-t">
         <h3 className="text-lg font-semibold mb-4">What You Will Learn</h3>
         <div className="space-y-3">
           {features.map((feature, index) => (
@@ -76,18 +86,6 @@ const Features = () => {
             />
           ))}
         </div>
-      </div>
-
-      <div className="mt-8 pt-6 border-t">
-        <h3 className="text-lg font-semibold mb-3">Course Structure</h3>
-        <p className="text-muted-foreground mb-4">
-          This self-paced course is divided into three levels, with each level lasting one month and covering four bestselling books.
-          Each week focuses on one book, with structured learning activities including reading, listening, comprehension exercises,
-          speaking practice, and writing tasks.
-        </p>
-        <p className="text-muted-foreground">
-          Every book includes a summary and podcast (10-15 minutes each) to help you grasp key concepts and improve your listening skills.
-        </p>
       </div>
     </div>
   );
