@@ -1,8 +1,6 @@
-
 import React from 'react';
-import { GraduationCap, ChevronRight } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const levels = [
   {
@@ -195,31 +193,28 @@ const CourseLevels = () => {
                     
                     <div className="space-y-6">
                       {level.books.map((book, bookIndex) => (
-                        <Collapsible key={bookIndex} className="border rounded-lg">
-                          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 text-left hover:bg-muted/50">
-                            <div className="flex items-center gap-3">
-                              <div className="w-12 h-12 rounded-lg overflow-hidden bg-primary/10 flex-shrink-0">
-                                <img 
-                                  src={`https://images.unsplash.com/${book.coverImage}?auto=format&fit=crop&w=100&q=80`} 
-                                  alt={book.title}
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                              <div>
-                                <span className="font-medium block">Week {bookIndex + 1}: {book.title}</span>
-                                <span className="text-sm text-primary">{book.weekTime}</span>
-                              </div>
+                        <div key={bookIndex} className="border rounded-lg">
+                          <div className="flex items-center gap-3 p-4">
+                            <div className="w-12 h-12 rounded-lg overflow-hidden bg-primary/10 flex-shrink-0">
+                              <img 
+                                src={`https://images.unsplash.com/${book.coverImage}?auto=format&fit=crop&w=100&q=80`} 
+                                alt={book.title}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
-                            <ChevronRight className="h-5 w-5 transition-transform ui-expanded:rotate-90" />
-                          </CollapsibleTrigger>
-                          <CollapsibleContent className="p-4 pt-0 text-sm border-t bg-muted/10">
+                            <div>
+                              <span className="font-medium block">Week {bookIndex + 1}: {book.title}</span>
+                              <span className="text-sm text-primary">{book.weekTime}</span>
+                            </div>
+                          </div>
+                          <div className="p-4 pt-0 text-sm border-t bg-muted/10">
                             <ul className="space-y-2 list-disc pl-6 pt-3">
                               {book.content.map((item, itemIndex) => (
                                 <li key={itemIndex}>{item}</li>
                               ))}
                             </ul>
-                          </CollapsibleContent>
-                        </Collapsible>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
