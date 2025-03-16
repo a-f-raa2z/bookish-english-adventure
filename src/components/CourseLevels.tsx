@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -17,8 +16,7 @@ const levels = [
         content: [
           "Listen to the summary and podcast.",
           "Focus on self-improvement and positive mindset vocabulary.",
-          "Identify and practice 10 key phrases.",
-          "Writing task: Describe a personal goal using learned vocabulary."
+          "Identify and practice 10 key phrases."
         ]
       },
       {
@@ -28,8 +26,7 @@ const levels = [
         content: [
           "Study action-based language and goal-setting terms.",
           "Listen to the podcast and practice pronunciation.",
-          "Comprehension task: Answer multiple-choice questions on key ideas.",
-          "Writing task: Explain one habit you want to change."
+          "Comprehension task: Answer multiple-choice questions on key ideas."
         ]
       },
       {
@@ -38,9 +35,7 @@ const levels = [
         coverImage: "photo-1487058792275-0ad4aaf24ca7",
         content: [
           "Improve comprehension of abstract ideas and mindfulness.",
-          "Identify key idioms and phrases in the summary.",
-          "Speaking practice: Explain a key concept in your own words.",
-          "Writing task: Reflect on how mindfulness impacts daily life."
+          "Identify key idioms and phrases in the summary."
         ]
       },
       {
@@ -49,8 +44,7 @@ const levels = [
         coverImage: "photo-1498050108023-c5249f4df085",
         content: [
           "Strengthen past tense and storytelling skills.",
-          "Analyze historical events and their impact.",
-          "Speaking practice: Retell a historical event from the book."
+          "Analyze historical events and their impact."
         ]
       }
     ],
@@ -68,8 +62,7 @@ const levels = [
         coverImage: "photo-1581091226825-a6a2a5aee158",
         content: [
           "Read summary and analyze complex sentence structures.",
-          "Extract key idioms and phrasal verbs.",
-          "Writing task: Describe a situation where intuition led to a good/bad decision."
+          "Extract key idioms and phrasal verbs."
         ]
       },
       {
@@ -78,8 +71,7 @@ const levels = [
         coverImage: "photo-1461749280684-dccba630e2f6",
         content: [
           "Learn finance-related expressions and persuasive language.",
-          "Listen to the podcast and write a one-paragraph reflection.",
-          "Speaking practice: Explain a financial concept in simple terms."
+          "Listen to the podcast and write a one-paragraph reflection."
         ]
       },
       {
@@ -88,8 +80,7 @@ const levels = [
         coverImage: "photo-1488590528505-98d2b5aba04b",
         content: [
           "Master informal English, self-motivation phrases, and slang.",
-          "Practice paraphrasing one key idea from the book.",
-          "Writing task: Write a motivational letter using new expressions."
+          "Practice paraphrasing one key idea from the book."
         ]
       },
       {
@@ -98,8 +89,7 @@ const levels = [
         coverImage: "photo-1518770660439-4636190af475",
         content: [
           "Improve comprehension of climate change and historical narratives.",
-          "Identify connectors and transition words.",
-          "Present a structured argument on an environmental issue."
+          "Identify connectors and transition words."
         ]
       }
     ],
@@ -117,8 +107,7 @@ const levels = [
         coverImage: "photo-1531297484001-80022131f5a1",
         content: [
           "Read and analyze philosophical language and ethics-related terms.",
-          "Identify advanced sentence structures and transitions.",
-          "Writing task: Reflect on how one of the agreements applies to your life."
+          "Identify advanced sentence structures and transitions."
         ]
       },
       {
@@ -127,9 +116,7 @@ const levels = [
         coverImage: "photo-1488590528505-98d2b5aba04b",
         content: [
           "Expand historical and sociological vocabulary.",
-          "Identify key concepts and their implications.",
-          "Speaking practice: Explain a historical event in your own words.",
-          "Write an essay comparing past and present societies."
+          "Identify key concepts and their implications."
         ]
       },
       {
@@ -138,8 +125,7 @@ const levels = [
         coverImage: "photo-1487058792275-0ad4aaf24ca7",
         content: [
           "Study political and autobiographical narratives.",
-          "Extract and analyze persuasive language used in speeches.",
-          "Draft a speech on an important issue."
+          "Extract and analyze persuasive language used in speeches."
         ]
       },
       {
@@ -148,8 +134,7 @@ const levels = [
         coverImage: "photo-1649972904349-6e44c42644a7",
         content: [
           "Learn business and tech disruption terminology.",
-          "Deep reading: Analyze a passage and its impact.",
-          "Write a case study on business innovation."
+          "Deep reading: Analyze a passage and its impact."
         ]
       }
     ],
