@@ -5,8 +5,6 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import CourseOverview from '@/components/CourseOverview';
 import CourseLevels from '@/components/CourseLevels';
-import CourseStructure from '@/components/course/CourseStructure';
-import Features from '@/components/course/Features';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Book } from 'lucide-react';
@@ -31,10 +29,6 @@ const CourseDetail = () => {
           </Link>
         </div>
         <CourseLevels />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
-          <CourseStructure />
-          <Features />
-        </div>
       </div>
       <Footer />
     </div>
