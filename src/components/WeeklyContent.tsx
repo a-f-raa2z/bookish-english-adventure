@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BookOpen, Headphones, MessageSquare, Pen, PlayCircle } from 'lucide-react';
 
 const weeklyTopics = [
@@ -16,6 +17,7 @@ const weeklyTopics = [
   {
     week: 2,
     book: "Atomic Habits",
+    bookLink: "/book/atomic-habits",
     activities: [
       { icon: <BookOpen />, title: "Language Study", description: "Study action-based language and goal-setting terms" },
       { icon: <Headphones />, title: "Podcast Practice", description: "Listen to the podcast and practice pronunciation" },
@@ -107,7 +109,15 @@ const WeeklyContent = () => {
           .map((topic) => (
             <div key={topic.week} className="mb-8 animate-slide-in-right">
               <div className="text-center mb-10">
-                <h3 className="title-small mb-3">Week {topic.week}: {topic.book}</h3>
+                <h3 className="title-small mb-3">
+                  Week {topic.week}: {topic.bookLink ? (
+                    <Link to={topic.bookLink} className="text-primary hover:underline">
+                      {topic.book}
+                    </Link>
+                  ) : (
+                    topic.book
+                  )}
+                </h3>
                 <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
               </div>
               
