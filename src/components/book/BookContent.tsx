@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
-import { Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 interface BookContentProps {
   bookId: string;
@@ -91,17 +89,7 @@ const BookContent: React.FC<BookContentProps> = ({
       <h3 className="text-xl font-semibold mb-4">Key Takeaways</h3>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2 relative">
-          {onPlayParagraph && (
-            <Button 
-              size="icon" 
-              variant="ghost" 
-              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-              onClick={() => onPlayParagraph(0)}
-            >
-              <Play className="h-4 w-4 text-primary" />
-            </Button>
-          )}
+        <h4 className="font-medium mb-2">
           • Introduction
         </h4>
         <ol className="list-decimal pl-5 space-y-2">
@@ -123,17 +111,7 @@ const BookContent: React.FC<BookContentProps> = ({
       </div>
       
       <div className="mb-6">
-        <h4 className="font-medium mb-2 relative">
-          {onPlayParagraph && (
-            <Button 
-              size="icon" 
-              variant="ghost" 
-              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-              onClick={() => onPlayParagraph(6)}
-            >
-              <Play className="h-4 w-4 text-primary" />
-            </Button>
-          )}
+        <h4 className="font-medium mb-2">
           • Conclusion
         </h4>
         <div className={`${currentPlayingParagraph === 6 ? 'bg-muted/30 p-1 rounded' : ''}`}>
@@ -144,17 +122,7 @@ const BookContent: React.FC<BookContentProps> = ({
       </div>
       
       <div>
-        <h4 className="font-medium mb-2 relative">
-          {onPlayParagraph && (
-            <Button 
-              size="icon" 
-              variant="ghost" 
-              className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-              onClick={() => onPlayParagraph(7)}
-            >
-              <Play className="h-4 w-4 text-primary" />
-            </Button>
-          )}
+        <h4 className="font-medium mb-2">
           Similar Books
         </h4>
         <ul className="list-disc pl-5 space-y-1">
