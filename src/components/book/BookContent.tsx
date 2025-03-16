@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import DictionaryPopup from './DictionaryPopup';
 import { isComplexWord } from '@/utils/complexWordsUtil';
-import { Play, Triangle } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface BookContentProps {
@@ -64,36 +64,18 @@ const BookContent: React.FC<BookContentProps> = ({
     });
   };
 
-  // Create a paragraph renderer that shows the triangle marker if it's currently playing
+  // Create a paragraph renderer that shows highlight if it's currently playing
   const renderParagraph = (content: JSX.Element, index: number) => {
     const isPlaying = index === currentPlayingParagraph;
     
     return (
       <div key={index} className="relative">
-        {isPlaying && (
-          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-            <Triangle className="h-4 w-4 text-primary fill-primary" />
-          </div>
-        )}
         <div className={`${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
           {content}
         </div>
-        {index === 0 && !isPlaying && onPlayParagraph && (
-          <Button 
-            size="icon" 
-            variant="ghost" 
-            className="absolute -left-6 top-1/2 transform -translate-y-1/2 h-6 w-6"
-            onClick={() => onPlayParagraph(0)}
-          >
-            <Play className="h-4 w-4 text-primary" />
-          </Button>
-        )}
       </div>
     );
   };
-
-  // Determine if introduction section is being played
-  const isIntroductionPlaying = currentPlayingParagraph >= 0 && currentPlayingParagraph <= 5;
 
   return (
     <div className="prose max-w-none px-1" onClick={handleWordClick}>
@@ -110,12 +92,7 @@ const BookContent: React.FC<BookContentProps> = ({
       
       <div className="mb-6">
         <h4 className="font-medium mb-2 relative">
-          {isIntroductionPlaying && (
-            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-              <Triangle className="h-4 w-4 text-primary fill-primary" />
-            </span>
-          )}
-          {!isIntroductionPlaying && onPlayParagraph && (
+          {onPlayParagraph && (
             <Button 
               size="icon" 
               variant="ghost" 
@@ -147,12 +124,7 @@ const BookContent: React.FC<BookContentProps> = ({
       
       <div className="mb-6">
         <h4 className="font-medium mb-2 relative">
-          {currentPlayingParagraph === 6 && (
-            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-              <Triangle className="h-4 w-4 text-primary fill-primary" />
-            </span>
-          )}
-          {currentPlayingParagraph !== 6 && onPlayParagraph && (
+          {onPlayParagraph && (
             <Button 
               size="icon" 
               variant="ghost" 
@@ -173,12 +145,7 @@ const BookContent: React.FC<BookContentProps> = ({
       
       <div>
         <h4 className="font-medium mb-2 relative">
-          {currentPlayingParagraph >= 7 && currentPlayingParagraph <= 9 && (
-            <span className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-              <Triangle className="h-4 w-4 text-primary fill-primary" />
-            </span>
-          )}
-          {!(currentPlayingParagraph >= 7 && currentPlayingParagraph <= 9) && onPlayParagraph && (
+          {onPlayParagraph && (
             <Button 
               size="icon" 
               variant="ghost" 
