@@ -38,64 +38,67 @@ const PaidCourseDetail = () => {
     <div className="min-h-screen">
       <Header />
       
-      {/* Progress Banner */}
-      <div className="bg-primary/10 py-6">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
-            <div>
-              <h1 className="text-2xl font-bold mb-1">My English Learning Journey</h1>
-              <p className="text-muted-foreground">Continue where you left off</p>
-            </div>
-            <Button className="mt-4 md:mt-0">
-              Continue Learning
-            </Button>
-          </div>
-          
-          <div className="glass-card p-6 mb-6">
-            <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-              <div className="flex-1">
-                <p className="text-sm text-muted-foreground mb-1">Overall Progress</p>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">{userProgress.totalProgress}% Complete</span>
-                  <span className="text-sm text-primary font-medium">Complete Level 1</span>
-                </div>
-                <Progress value={userProgress.totalProgress} className="h-2" />
+      {/* Add top padding to prevent content from overlapping with the fixed header */}
+      <div className="pt-20">
+        {/* Progress Banner */}
+        <div className="bg-primary/10 py-6">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4">
+              <div>
+                <h1 className="text-2xl font-bold mb-1">My English Learning Journey</h1>
+                <p className="text-muted-foreground">Continue where you left off</p>
               </div>
-              
-              <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-full bg-primary/10">
-                    <Book className="h-5 w-5 text-primary" />
+              <Button className="mt-4 md:mt-0">
+                Continue Learning
+              </Button>
+            </div>
+            
+            <div className="glass-card p-6 mb-6">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                <div className="flex-1">
+                  <p className="text-sm text-muted-foreground mb-1">Overall Progress</p>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">{userProgress.totalProgress}% Complete</span>
+                    <span className="text-sm text-primary font-medium">Complete Level 1</span>
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Current Book</p>
-                    <p className="font-medium">{userProgress.currentBook}</p>
-                  </div>
+                  <Progress value={userProgress.totalProgress} className="h-2" />
                 </div>
                 
-                <div className="flex items-center gap-2">
-                  <div className="p-2 rounded-full bg-primary/10">
-                    <Clock className="h-5 w-5 text-primary" />
+                <div className="flex gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 rounded-full bg-primary/10">
+                      <Book className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Current Book</p>
+                      <p className="font-medium">{userProgress.currentBook}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Last Activity</p>
-                    <p className="font-medium">{userProgress.lastActivity}</p>
+                  
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 rounded-full bg-primary/10">
+                      <Clock className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">Last Activity</p>
+                      <p className="font-medium">{userProgress.lastActivity}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className="container mx-auto px-4 py-8">
-        {/* Course Syllabus with Progress */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-2">Course Progress</h2>
-          <p className="text-muted-foreground">Track your journey through each level and book</p>
-        </div>
         
-        <CourseLevelsWithProgress weekProgress={userProgress.weekProgress} />
+        <div className="container mx-auto px-4 py-8">
+          {/* Course Syllabus with Progress */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold mb-2">Course Progress</h2>
+            <p className="text-muted-foreground">Track your journey through each level and book</p>
+          </div>
+          
+          <CourseLevelsWithProgress weekProgress={userProgress.weekProgress} />
+        </div>
       </div>
       
       <Footer />
