@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -22,7 +21,6 @@ const BookDetail = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   
-  // Track which paragraph is currently being played
   const [currentPlayingParagraph, setCurrentPlayingParagraph] = useState<number>(-1);
   
   const handleWordClick = (e: React.MouseEvent) => {
@@ -103,7 +101,6 @@ const BookDetail = () => {
   
   const allParagraphs = [...summaryParagraphs, ...mainStoryParagraphs];
   
-  // Create a paragraph renderer that shows a triangle marker if it's currently playing
   const renderParagraph = (paragraph: string, index: number) => {
     const isPlaying = index === currentPlayingParagraph;
     
@@ -112,7 +109,7 @@ const BookDetail = () => {
         <div className="flex">
           {isPlaying && (
             <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-              <Triangle className="h-4 w-4 text-primary fill-primary" />
+              <ChevronDown className="h-4 w-4 text-primary fill-primary" />
             </div>
           )}
           <div className={`flex-1 ${isPlaying ? 'bg-muted/30 p-1 rounded' : ''}`}>
@@ -218,7 +215,6 @@ const BookDetail = () => {
               <LanguageSelector onLanguageChange={setLanguage} />
             </div>
             
-            {/* Add audio player at the top */}
             <AudioPlayer 
               paragraphs={allParagraphs}
               onParagraphChange={setCurrentPlayingParagraph}

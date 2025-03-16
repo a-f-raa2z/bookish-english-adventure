@@ -77,6 +77,18 @@ const Features = () => {
           ))}
         </div>
       </div>
+
+      <div className="mt-8 pt-6 border-t">
+        <h3 className="text-lg font-semibold mb-3">Course Structure</h3>
+        <p className="text-muted-foreground mb-4">
+          This self-paced course is divided into three levels, with each level lasting one month and covering four bestselling books.
+          Each week focuses on one book, with structured learning activities including reading, listening, comprehension exercises,
+          speaking practice, and writing tasks.
+        </p>
+        <p className="text-muted-foreground">
+          Every book includes a summary and podcast (10-15 minutes each) to help you grasp key concepts and improve your listening skills.
+        </p>
+      </div>
     </div>
   );
 };

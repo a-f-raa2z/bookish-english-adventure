@@ -3,7 +3,6 @@ import React from 'react';
 import Features from './course/Features';
 import CourseTags from './course/CourseTags';
 import CourseTimer from './course/CourseTimer';
-import CourseStructure from './course/CourseStructure';
 
 const CourseOverview = () => {
   return (
@@ -16,8 +15,6 @@ const CourseOverview = () => {
           structured exercises, and practical activities.
         </p>
       </div>
-      
-      <CourseStructure />
       
       <div className="flex flex-col lg:flex-row gap-8 my-12">
         {/* Left column: What You Will Learn and Tags section below it */}
