@@ -20,8 +20,7 @@ const weeklyTopics = [
     activities: [
       { icon: <PlayCircle />, title: "Summary & Podcast", description: "Listen to the book summary and podcast discussion" },
       { icon: <BookOpen />, title: "Vocabulary Focus", description: "Focus on self-improvement and positive mindset vocabulary" },
-      { icon: <MessageSquare />, title: "Key Phrases", description: "Identify and practice 10 key phrases from the book" },
-      { icon: <Pen />, title: "Writing Task", description: "Describe a personal goal using learned vocabulary" }
+      { icon: <MessageSquare />, title: "Key Phrases", description: "Identify and practice 10 key phrases from the book" }
     ]
   },
   {
@@ -31,8 +30,7 @@ const weeklyTopics = [
     activities: [
       { icon: <BookOpen />, title: "Language Study", description: "Study action-based language and goal-setting terms" },
       { icon: <Headphones />, title: "Podcast Practice", description: "Listen to the podcast and practice pronunciation" },
-      { icon: <MessageSquare />, title: "Comprehension", description: "Answer multiple-choice questions on key ideas" },
-      { icon: <Pen />, title: "Writing Task", description: "Explain one habit you want to change" }
+      { icon: <MessageSquare />, title: "Comprehension", description: "Answer multiple-choice questions on key ideas" }
     ]
   },
   {
@@ -41,8 +39,7 @@ const weeklyTopics = [
     activities: [
       { icon: <BookOpen />, title: "Abstract Comprehension", description: "Improve comprehension of abstract ideas and mindfulness" },
       { icon: <MessageSquare />, title: "Idioms & Phrases", description: "Identify key idioms and phrases in the summary" },
-      { icon: <Headphones />, title: "Speaking Practice", description: "Explain a key concept in your own words" },
-      { icon: <Pen />, title: "Reflection", description: "Reflect on how mindfulness impacts daily life" }
+      { icon: <Headphones />, title: "Speaking Practice", description: "Explain a key concept in your own words" }
     ]
   },
   {
@@ -51,13 +48,13 @@ const weeklyTopics = [
     activities: [
       { icon: <BookOpen />, title: "Past Tense Practice", description: "Strengthen past tense and storytelling skills" },
       { icon: <MessageSquare />, title: "Historical Analysis", description: "Analyze historical events and their impact" },
-      { icon: <Headphones />, title: "Speaking Practice", description: "Retell a historical event from the book" },
-      { icon: <Pen />, title: "Final Writing", description: "Summarize a key lesson learned" }
+      { icon: <Headphones />, title: "Speaking Practice", description: "Retell a historical event from the book" }
     ]
   }
 ];
 
 const WeeklyContent = () => {
+  // Set default active week to 1
   const [activeWeek, setActiveWeek] = useState(1);
   
   const handleWeekChange = (week: number) => {

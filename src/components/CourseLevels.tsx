@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -49,8 +50,7 @@ const levels = [
         content: [
           "Strengthen past tense and storytelling skills.",
           "Analyze historical events and their impact.",
-          "Speaking practice: Retell a historical event from the book.",
-          "Final writing task: Summarize a key lesson learned."
+          "Speaking practice: Retell a historical event from the book."
         ]
       }
     ],
@@ -99,7 +99,7 @@ const levels = [
         content: [
           "Improve comprehension of climate change and historical narratives.",
           "Identify connectors and transition words.",
-          "Final writing task: Present a structured argument on an environmental issue."
+          "Present a structured argument on an environmental issue."
         ]
       }
     ],
@@ -129,7 +129,7 @@ const levels = [
           "Expand historical and sociological vocabulary.",
           "Identify key concepts and their implications.",
           "Speaking practice: Explain a historical event in your own words.",
-          "Writing task: Write an essay comparing past and present societies."
+          "Write an essay comparing past and present societies."
         ]
       },
       {
@@ -139,7 +139,7 @@ const levels = [
         content: [
           "Study political and autobiographical narratives.",
           "Extract and analyze persuasive language used in speeches.",
-          "Writing task: Draft a speech on an important issue."
+          "Draft a speech on an important issue."
         ]
       },
       {
@@ -149,7 +149,7 @@ const levels = [
         content: [
           "Learn business and tech disruption terminology.",
           "Deep reading: Analyze a passage and its impact.",
-          "Final writing task: Write a case study on business innovation."
+          "Write a case study on business innovation."
         ]
       }
     ],
@@ -170,7 +170,7 @@ const CourseLevels = () => {
       </div>
       
       <div className="mx-auto max-w-4xl">
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full" defaultValue="level-0">
           {levels.map((level, index) => (
             <AccordionItem key={index} value={`level-${index}`}>
               <div className="glass-card mb-4 overflow-hidden">
