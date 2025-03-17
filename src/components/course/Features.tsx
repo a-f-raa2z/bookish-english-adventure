@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
-import { BookOpen, MessageSquare, Brain, CheckCircle2 } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, CheckCircle2, Book } from 'lucide-react';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 type FeatureProps = {
   icon: React.ReactNode;
@@ -66,6 +67,18 @@ const Features = () => {
     <div className="glass-card p-6">
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
+        
+        {/* Course Cover Image - moved here from CourseDetail */}
+        <div className="mb-6">
+          <AspectRatio ratio={16 / 9} className="bg-muted/30 rounded-lg overflow-hidden border">
+            <div className="flex flex-col items-center justify-center h-full">
+              <Book className="h-16 w-16 text-primary mb-2 opacity-50" />
+              <h3 className="text-xl text-muted-foreground font-medium">English Learning Through Books</h3>
+              <p className="text-sm text-muted-foreground mt-2">Comprehensive course with bestselling books</p>
+            </div>
+          </AspectRatio>
+        </div>
+        
         <p className="text-muted-foreground mb-4">
           This self-paced program is structured into 3 progressive levels, each lasting one month. 
           In every level, you'll explore 4 bestselling books through concise summaries and companion podcasts (10-15 minutes each). 
