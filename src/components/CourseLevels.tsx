@@ -213,8 +213,8 @@ const CourseLevels = () => {
                               />
                             </div>
                             <div>
-                              <span className="font-medium block">Week {bookIndex + 1}: {book.title}</span>
-                              <span className="text-xs text-muted-foreground block">{book.subtitle}, by {book.author}</span>
+                              <span className="font-medium block">Week {bookIndex + 1}: {book.title} by {book.author}</span>
+                              <span className="text-xs text-muted-foreground block">{book.subtitle}</span>
                               <span className="text-sm text-primary">{book.weekTime}</span>
                             </div>
                           </div>
