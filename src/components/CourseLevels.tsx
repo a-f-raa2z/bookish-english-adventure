@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -11,6 +12,8 @@ const levels = [
     books: [
       {
         title: "Super Attractor",
+        subtitle: "Methods for Manifesting a Life Beyond Your Wildest Dreams",
+        author: "Gabrielle Bernstein",
         weekTime: "10 hours",
         coverImage: "photo-1649972904349-6e44c42644a7",
         content: [
@@ -21,6 +24,8 @@ const levels = [
       },
       {
         title: "Atomic Habits",
+        subtitle: "An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+        author: "James Clear",
         weekTime: "10 hours",
         coverImage: "photo-1486312338219-ce68d2c6f44d",
         content: [
@@ -31,6 +36,8 @@ const levels = [
       },
       {
         title: "The Power of Now",
+        subtitle: "A Guide to Spiritual Enlightenment",
+        author: "Eckhart Tolle",
         weekTime: "10 hours",
         coverImage: "photo-1487058792275-0ad4aaf24ca7",
         content: [
@@ -40,6 +47,8 @@ const levels = [
       },
       {
         title: "Fall and Rise",
+        subtitle: "The Story of 9/11",
+        author: "Mitchell Zuckoff",
         weekTime: "10 hours",
         coverImage: "photo-1498050108023-c5249f4df085",
         content: [
@@ -58,6 +67,8 @@ const levels = [
     books: [
       {
         title: "Thinking, Fast and Slow",
+        subtitle: "A Revolutionary Look at the Way Our Minds Work",
+        author: "Daniel Kahneman",
         weekTime: "12 hours",
         coverImage: "photo-1581091226825-a6a2a5aee158",
         content: [
@@ -67,6 +78,8 @@ const levels = [
       },
       {
         title: "The Psychology of Money",
+        subtitle: "Timeless Lessons on Wealth, Greed, and Happiness",
+        author: "Morgan Housel",
         weekTime: "12 hours",
         coverImage: "photo-1461749280684-dccba630e2f6",
         content: [
@@ -76,6 +89,8 @@ const levels = [
       },
       {
         title: "You Are a Badass",
+        subtitle: "How to Stop Doubting Your Greatness and Start Living an Awesome Life",
+        author: "Jen Sincero",
         weekTime: "12 hours",
         coverImage: "photo-1488590528505-98d2b5aba04b",
         content: [
@@ -85,6 +100,8 @@ const levels = [
       },
       {
         title: "Losing Earth",
+        subtitle: "A Recent History",
+        author: "Nathaniel Rich",
         weekTime: "12 hours",
         coverImage: "photo-1518770660439-4636190af475",
         content: [
@@ -103,6 +120,8 @@ const levels = [
     books: [
       {
         title: "The Four Agreements",
+        subtitle: "A Practical Guide to Personal Freedom",
+        author: "Don Miguel Ruiz",
         weekTime: "14 hours",
         coverImage: "photo-1531297484001-80022131f5a1",
         content: [
@@ -112,6 +131,8 @@ const levels = [
       },
       {
         title: "Sapiens",
+        subtitle: "A Brief History of Humankind",
+        author: "Yuval Noah Harari",
         weekTime: "14 hours",
         coverImage: "photo-1488590528505-98d2b5aba04b",
         content: [
@@ -121,6 +142,8 @@ const levels = [
       },
       {
         title: "A Promised Land",
+        subtitle: "Presidential Memoir",
+        author: "Barack Obama",
         weekTime: "14 hours",
         coverImage: "photo-1487058792275-0ad4aaf24ca7",
         content: [
@@ -130,6 +153,8 @@ const levels = [
       },
       {
         title: "The Innovator's Dilemma",
+        subtitle: "When New Technologies Cause Great Firms to Fail",
+        author: "Clayton M. Christensen",
         weekTime: "14 hours",
         coverImage: "photo-1649972904349-6e44c42644a7",
         content: [
@@ -189,6 +214,7 @@ const CourseLevels = () => {
                             </div>
                             <div>
                               <span className="font-medium block">Week {bookIndex + 1}: {book.title}</span>
+                              <span className="text-xs text-muted-foreground block">{book.subtitle}, by {book.author}</span>
                               <span className="text-sm text-primary">{book.weekTime}</span>
                             </div>
                           </div>
