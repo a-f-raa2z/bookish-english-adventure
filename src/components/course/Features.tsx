@@ -1,5 +1,6 @@
+
 import React, { useEffect } from 'react';
-import { BookOpen, MessageSquare, Brain, Book, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Book } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
   Carousel,
@@ -97,37 +98,25 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        <div className="mb-6 relative">
+        {/* Course Image Slider - replaced static image with carousel */}
+        <div className="mb-6">
           <Carousel className="w-full">
-            <div className="relative">
-              <CarouselContent>
-                {courseImages.map((image) => (
-                  <CarouselItem key={image.id}>
-                    <AspectRatio ratio={16 / 9} className="bg-muted/30 rounded-lg overflow-hidden border">
-                      <img 
-                        src={image.src} 
-                        alt={image.alt} 
-                        className="w-full h-full object-cover"
-                      />
-                    </AspectRatio>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              
-              <div className="absolute bottom-4 inset-x-0 flex items-center justify-between px-4 pointer-events-none">
-                <CarouselPrevious 
-                  className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/40 border-0 shadow-none pointer-events-auto" 
-                  variant="outline"
-                >
-                  <ChevronLeft className="h-4 w-4 text-gray-800/70" />
-                </CarouselPrevious>
-                <CarouselNext 
-                  className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/40 border-0 shadow-none pointer-events-auto" 
-                  variant="outline"
-                >
-                  <ChevronRight className="h-4 w-4 text-gray-800/70" />
-                </CarouselNext>
-              </div>
+            <CarouselContent>
+              {courseImages.map((image) => (
+                <CarouselItem key={image.id}>
+                  <AspectRatio ratio={16 / 9} className="bg-muted/30 rounded-lg overflow-hidden border">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt} 
+                      className="w-full h-full object-cover"
+                    />
+                  </AspectRatio>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-end gap-2 mt-2">
+              <CarouselPrevious className="relative inset-auto translate-y-0 h-8 w-8" />
+              <CarouselNext className="relative inset-auto translate-y-0 h-8 w-8" />
             </div>
           </Carousel>
         </div>
