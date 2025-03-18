@@ -1,7 +1,14 @@
 
 import React, { useEffect } from 'react';
-import { BookOpen, MessageSquare, Brain, CheckCircle2, Book } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Book } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
 
 type FeatureProps = {
   icon: React.ReactNode;
@@ -24,6 +31,29 @@ const features = [
     icon: <Brain className="h-6 w-6 text-primary" />,
     title: "Think Sharper, Learn Deeper",
     description: "Go beyond passive reading—connect insights, challenge ideas, and make learning truly stick."
+  }
+];
+
+const courseImages = [
+  {
+    id: 1,
+    src: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=800&q=80",
+    alt: "Woman studying on laptop"
+  },
+  {
+    id: 2,
+    src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+    alt: "Laptop with code"
+  },
+  {
+    id: 3,
+    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    alt: "Circuit board"
+  },
+  {
+    id: 4,
+    src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    alt: "Programming monitor"
   }
 ];
 
@@ -68,15 +98,27 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        {/* Course Cover Image - moved here from CourseDetail */}
+        {/* Course Image Slider - replaced static image with carousel */}
         <div className="mb-6">
-          <AspectRatio ratio={16 / 9} className="bg-muted/30 rounded-lg overflow-hidden border">
-            <div className="flex flex-col items-center justify-center h-full">
-              <Book className="h-16 w-16 text-primary mb-2 opacity-50" />
-              <h3 className="text-xl text-muted-foreground font-medium">English Learning Through Books</h3>
-              <p className="text-sm text-muted-foreground mt-2">Comprehensive course with bestselling books</p>
+          <Carousel className="w-full">
+            <CarouselContent>
+              {courseImages.map((image) => (
+                <CarouselItem key={image.id}>
+                  <AspectRatio ratio={16 / 9} className="bg-muted/30 rounded-lg overflow-hidden border">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt} 
+                      className="w-full h-full object-cover"
+                    />
+                  </AspectRatio>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-end gap-2 mt-2">
+              <CarouselPrevious className="relative inset-auto translate-y-0 h-8 w-8" />
+              <CarouselNext className="relative inset-auto translate-y-0 h-8 w-8" />
             </div>
-          </AspectRatio>
+          </Carousel>
         </div>
         
         <p className="text-muted-foreground mb-4">
