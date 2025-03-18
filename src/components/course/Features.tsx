@@ -98,7 +98,7 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        {/* Course Image Slider with even more subtle navigation directly on image */}
+        {/* Course Image Slider with arrows contained within the image boundaries */}
         <div className="mb-6 relative">
           <Carousel className="w-full">
             <CarouselContent>
@@ -110,24 +110,24 @@ const Features = () => {
                       alt={image.alt} 
                       className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
+                      <CarouselPrevious 
+                        className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/40 border-0 shadow-none pointer-events-auto" 
+                        variant="outline"
+                      >
+                        <ChevronLeft className="h-4 w-4 text-gray-800/70" />
+                      </CarouselPrevious>
+                      <CarouselNext 
+                        className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/40 border-0 shadow-none pointer-events-auto" 
+                        variant="outline"
+                      >
+                        <ChevronRight className="h-4 w-4 text-gray-800/70" />
+                      </CarouselNext>
+                    </div>
                   </AspectRatio>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
-              <CarouselPrevious 
-                className="h-8 w-8 rounded-full bg-white/30 hover:bg-white/60 border-0 shadow-sm pointer-events-auto" 
-                variant="outline"
-              >
-                <ChevronLeft className="h-4 w-4 text-gray-800/80" />
-              </CarouselPrevious>
-              <CarouselNext 
-                className="h-8 w-8 rounded-full bg-white/30 hover:bg-white/60 border-0 shadow-sm pointer-events-auto" 
-                variant="outline"
-              >
-                <ChevronRight className="h-4 w-4 text-gray-800/80" />
-              </CarouselNext>
-            </div>
           </Carousel>
         </div>
         
