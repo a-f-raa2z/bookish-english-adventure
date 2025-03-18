@@ -98,7 +98,7 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        {/* Course Image Slider with more subtle navigation */}
+        {/* Course Image Slider with even more subtle navigation directly on image */}
         <div className="mb-6 relative">
           <Carousel className="w-full">
             <CarouselContent>
@@ -114,18 +114,18 @@ const Features = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-2">
+            <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
               <CarouselPrevious 
-                className="h-8 w-8 rounded-full bg-white/50 hover:bg-white/80 border-0 shadow-sm pointer-events-auto" 
+                className="h-8 w-8 rounded-full bg-white/30 hover:bg-white/60 border-0 shadow-sm pointer-events-auto" 
                 variant="outline"
               >
-                <ChevronLeft className="h-4 w-4 text-gray-700" />
+                <ChevronLeft className="h-4 w-4 text-gray-800/80" />
               </CarouselPrevious>
               <CarouselNext 
-                className="h-8 w-8 rounded-full bg-white/50 hover:bg-white/80 border-0 shadow-sm pointer-events-auto" 
+                className="h-8 w-8 rounded-full bg-white/30 hover:bg-white/60 border-0 shadow-sm pointer-events-auto" 
                 variant="outline"
               >
-                <ChevronRight className="h-4 w-4 text-gray-700" />
+                <ChevronRight className="h-4 w-4 text-gray-800/80" />
               </CarouselNext>
             </div>
           </Carousel>
