@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BookOpen, MessageSquare, Brain, Book, Circle } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
@@ -78,6 +78,8 @@ const Feature = ({ icon, title, description }: FeatureProps) => {
 };
 
 const Features = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -105,7 +107,15 @@ const Features = () => {
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
         <div className="mb-6 relative">
-          <Carousel className="w-full" opts={{ loop: true }}>
+          <Carousel 
+            className="w-full" 
+            opts={{ loop: true }}
+            setApi={(api) => {
+              api?.on('select', () => {
+                setActiveIndex(api.selectedScrollSnap());
+              });
+            }}
+          >
             <CarouselContent>
               {courseImages.map((image) => (
                 <CarouselItem key={image.id}>
@@ -128,7 +138,7 @@ const Features = () => {
           </Carousel>
           
           {/* Custom dot pagination */}
-          <CarouselDotNavigation images={courseImages} />
+          <CarouselDotNavigation images={courseImages} activeIndex={activeIndex} />
         </div>
         
         <p className="text-muted-foreground mb-4">
@@ -163,7 +173,13 @@ const Features = () => {
 };
 
 // Custom dot navigation component
-const CarouselDotNavigation = ({ images }: { images: { id: number; src: string; alt: string }[] }) => {
+const CarouselDotNavigation = ({ 
+  images, 
+  activeIndex 
+}: { 
+  images: { id: number; src: string; alt: string }[]; 
+  activeIndex: number 
+}) => {
   return (
     <Pagination className="mt-3">
       <PaginationContent className="flex justify-center space-x-1">
@@ -172,7 +188,7 @@ const CarouselDotNavigation = ({ images }: { images: { id: number; src: string; 
             <PaginationLink 
               href={`#slide-${index}`}
               size="icon"
-              className="h-2 w-2 p-0 rounded-full data-[current=true]:bg-primary data-[current=false]:bg-muted-foreground/30"
+              className={`h-2 w-2 p-0 rounded-full ${index === activeIndex ? 'bg-primary' : 'bg-gray-300'}`}
               data-carousel-slide={index}
               onClick={(e) => {
                 e.preventDefault();
