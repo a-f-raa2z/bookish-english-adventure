@@ -12,18 +12,18 @@ type FeatureProps = {
 const features = [
   {
     icon: <BookOpen className="h-6 w-6 text-primary" />,
-    title: "Structured Reading",
-    description: "Improve English naturally through bestselling books with structured lessons, book summaries, and podcasts. Engage with key ideas, expand vocabulary, and reinforce comprehension through guided exercises and discussions."
+    title: "Unlock Big Ideas, Effortlessly",
+    description: "Bestselling books, distilled into engaging summaries and podcasts—so you learn smarter, not harder."
   },
   {
     icon: <MessageSquare className="h-6 w-6 text-primary" />,
-    title: "Vocabulary Expansion",
-    description: "Build your vocabulary and master expressions used in real-world contexts."
+    title: "Train Your Ears, Tune Into Knowledge",
+    description: "Absorb real-world English naturally through immersive audio, helping you understand, not just memorize."
   },
   {
     icon: <Brain className="h-6 w-6 text-primary" />,
-    title: "Critical Thinking",
-    description: "Develop reading comprehension and critical thinking skills through guided exercises."
+    title: "Think Sharper, Learn Deeper",
+    description: "Go beyond passive reading—connect insights, challenge ideas, and make learning truly stick."
   }
 ];
 
