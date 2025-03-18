@@ -1,5 +1,6 @@
+
 import React, { useEffect } from 'react';
-import { BookOpen, MessageSquare, Brain, Book } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Book, Circle } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
   Carousel,
@@ -8,6 +9,12 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink
+} from "@/components/ui/pagination";
 
 type FeatureProps = {
   icon: React.ReactNode;
@@ -98,7 +105,7 @@ const Features = () => {
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
         <div className="mb-6 relative">
-          <Carousel className="w-full">
+          <Carousel className="w-full" opts={{ loop: true }}>
             <CarouselContent>
               {courseImages.map((image) => (
                 <CarouselItem key={image.id}>
@@ -112,11 +119,16 @@ const Features = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between pointer-events-none px-2">
-              <CarouselPrevious className="relative h-8 w-8 pointer-events-auto" />
-              <CarouselNext className="relative h-8 w-8 pointer-events-auto" />
+            
+            {/* Hidden but needed for API functionality */}
+            <div className="hidden">
+              <CarouselPrevious />
+              <CarouselNext />
             </div>
           </Carousel>
+          
+          {/* Custom dot pagination */}
+          <CarouselDotNavigation images={courseImages} />
         </div>
         
         <p className="text-muted-foreground mb-4">
@@ -147,6 +159,39 @@ const Features = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Custom dot navigation component
+const CarouselDotNavigation = ({ images }: { images: { id: number; src: string; alt: string }[] }) => {
+  return (
+    <Pagination className="mt-3">
+      <PaginationContent className="flex justify-center space-x-1">
+        {images.map((image, index) => (
+          <PaginationItem key={image.id}>
+            <PaginationLink 
+              href={`#slide-${index}`}
+              size="icon"
+              className="h-2 w-2 p-0 rounded-full data-[current=true]:bg-primary data-[current=false]:bg-muted-foreground/30"
+              data-carousel-slide={index}
+              onClick={(e) => {
+                e.preventDefault();
+                const carousel = document.querySelector('[data-embla-container]');
+                if (carousel) {
+                  // @ts-ignore - Access the Embla API through __embla
+                  const emblaApi = (carousel as any).__embla;
+                  if (emblaApi) {
+                    emblaApi.scrollTo(index);
+                  }
+                }
+              }}
+            >
+              <span className="sr-only">Go to slide {index + 1}</span>
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+      </PaginationContent>
+    </Pagination>
   );
 };
 
