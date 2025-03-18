@@ -80,10 +80,16 @@ const Features = () => {
         </div>
         
         <p className="text-muted-foreground mb-4">
-          This self-paced program is structured into 3 progressive levels, each lasting one month. 
-          In every level, you'll explore 4 bestselling books through concise summaries and companion podcasts (10-15 minutes each). 
-          To reinforce your understanding and sharpen your listening skills, each book also includes 
-          targeted Q&A practice designed to help you master key concepts.
+          Learn through stories, not study sessions. This self-paced program transforms bestselling books into engaging audio experiences, helping you absorb powerful ideas while naturally improving your English.
+        </p>
+        <p className="text-muted-foreground mb-4">
+          Designed across three progressive levels (each lasting one month), the program features carefully curated book insights paired with immersive podcasts. Each week, you'll explore key themes, deepen comprehension, and expand your vocabulary—all without rote memorization or tedious grammar drills.
+        </p>
+        <p className="text-muted-foreground mb-4">
+          Why Us? No fluff, no pressure—just powerful insights and practical language skills that stick.
+        </p>
+        <p className="text-muted-foreground mb-4">
+          Why You? Because you're ready to learn smarter, not harder.
         </p>
       </div>
 
