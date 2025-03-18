@@ -114,7 +114,7 @@ const Features = () => {
                 ))}
               </CarouselContent>
               
-              <div className="absolute inset-0 flex items-center justify-between px-4 pointer-events-none">
+              <div className="absolute bottom-4 inset-x-0 flex items-center justify-between px-4 pointer-events-none">
                 <CarouselPrevious 
                   className="h-8 w-8 rounded-full bg-white/20 hover:bg-white/40 border-0 shadow-none pointer-events-auto" 
                   variant="outline"
