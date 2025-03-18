@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -168,7 +167,7 @@ const CourseLevelsWithProgress = ({ weekProgress }: { weekProgress: Record<strin
           weekTime: "12 hours",
           coverImage: "photo-1581091226825-a6a2a5aee158",
           content: [
-            "Read summary and analyze complex sentence structures.",
+            "Listen to and read summary and analyze complex sentence structures.",
             "Extract key idioms and phrasal verbs."
           ]
         },
