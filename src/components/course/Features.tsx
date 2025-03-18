@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { BookOpen, MessageSquare, Brain, Book } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Book, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
   Carousel,
@@ -98,8 +98,8 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        {/* Course Image Slider - replaced static image with carousel */}
-        <div className="mb-6">
+        {/* Course Image Slider with more subtle navigation */}
+        <div className="mb-6 relative">
           <Carousel className="w-full">
             <CarouselContent>
               {courseImages.map((image) => (
@@ -114,9 +114,19 @@ const Features = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-end gap-2 mt-2">
-              <CarouselPrevious className="relative inset-auto translate-y-0 h-8 w-8" />
-              <CarouselNext className="relative inset-auto translate-y-0 h-8 w-8" />
+            <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-2">
+              <CarouselPrevious 
+                className="h-8 w-8 rounded-full bg-white/50 hover:bg-white/80 border-0 shadow-sm pointer-events-auto" 
+                variant="outline"
+              >
+                <ChevronLeft className="h-4 w-4 text-gray-700" />
+              </CarouselPrevious>
+              <CarouselNext 
+                className="h-8 w-8 rounded-full bg-white/50 hover:bg-white/80 border-0 shadow-sm pointer-events-auto" 
+                variant="outline"
+              >
+                <ChevronRight className="h-4 w-4 text-gray-700" />
+              </CarouselNext>
             </div>
           </Carousel>
         </div>
