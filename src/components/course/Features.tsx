@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { BookOpen, MessageSquare, Brain, Book } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -98,7 +97,7 @@ const Features = () => {
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
-        <div className="mb-2">
+        <div className="mb-6 relative">
           <Carousel className="w-full">
             <CarouselContent>
               {courseImages.map((image) => (
@@ -113,12 +112,11 @@ const Features = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
+            <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between pointer-events-none px-2">
+              <CarouselPrevious className="relative h-8 w-8 pointer-events-auto" />
+              <CarouselNext className="relative h-8 w-8 pointer-events-auto" />
+            </div>
           </Carousel>
-        </div>
-        
-        <div className="flex justify-center gap-2 mb-4">
-          <CarouselPrevious className="relative h-8 w-8 inset-auto" />
-          <CarouselNext className="relative h-8 w-8 inset-auto" />
         </div>
         
         <p className="text-muted-foreground mb-4">
