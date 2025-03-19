@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GraduationCap, Target } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -64,6 +63,7 @@ const levels = [
     duration: "4 Weeks, 4 Books",
     totalTime: "48 hours",
     description: "For learners who can understand longer texts and want to improve critical thinking, argumentation, and professional vocabulary.",
+    goal: "Shift from understanding English to expressing thoughts clearly and fluently. This level focuses on academic and professional vocabulary (4,500-7,000 words), structured thinking, and nuanced communication. Learners will learn to break down complex ideas and express opinions effectively.",
     books: [
       {
         title: "Thinking, Fast and Slow",
@@ -117,6 +117,7 @@ const levels = [
     duration: "4 Weeks, 4 Books",
     totalTime: "56 hours",
     description: "For learners who are comfortable reading challenging books and want to refine their professional and academic English.",
+    goal: "Refine critical thinking, argumentation, and professional communication, with an emphasis on complex analysis, industry-specific vocabulary (7,000+ words), and persuasive writing.",
     books: [
       {
         title: "The Four Agreements",
