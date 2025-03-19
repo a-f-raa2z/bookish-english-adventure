@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Target } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const levels = [
@@ -8,6 +8,7 @@ const levels = [
     duration: "4 Weeks, 4 Books",
     totalTime: "40 hours",
     description: "For learners comfortable with basic English who want to build fluency. Focus on daily vocabulary, common phrases, and understanding simple ideas.",
+    goal: "Develop confidence in understanding and using English in everyday situations, focusing on high-frequency vocabulary (2,500-4,000 words), fundamental sentence structures, and intuitive listening skills. Learners at this stage should move from understanding words to grasping whole ideas.",
     books: [
       {
         title: "Super Attractor",
@@ -199,6 +200,18 @@ const CourseLevels = () => {
                 <AccordionContent className="px-6 pb-6">
                   <div className="pt-2 md:pl-16">
                     <p className="text-muted-foreground mb-6">{level.description}</p>
+                    
+                    {level.goal && (
+                      <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/10">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="p-1.5 bg-primary/10 rounded-full">
+                            <Target className="h-5 w-5 text-primary" />
+                          </div>
+                          <h4 className="font-medium">Goal</h4>
+                        </div>
+                        <p className="text-muted-foreground">{level.goal}</p>
+                      </div>
+                    )}
                     
                     <div className="space-y-6">
                       {level.books.map((book, bookIndex) => (
