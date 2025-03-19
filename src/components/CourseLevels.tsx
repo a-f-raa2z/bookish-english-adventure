@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { GraduationCap, Target } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -7,7 +8,6 @@ const levels = [
     title: "Foundations of Everyday English",
     duration: "4 Weeks, 4 Books",
     totalTime: "40 hours",
-    description: "For learners comfortable with basic English who want to build fluency. Focus on daily vocabulary, common phrases, and understanding simple ideas.",
     goal: "Develop confidence in understanding and using English in everyday situations, focusing on high-frequency vocabulary (2,500-4,000 words), fundamental sentence structures, and intuitive listening skills. Learners at this stage should move from understanding words to grasping whole ideas.",
     books: [
       {
@@ -199,7 +199,9 @@ const CourseLevels = () => {
                 
                 <AccordionContent className="px-6 pb-6">
                   <div className="pt-2 md:pl-16">
-                    <p className="text-muted-foreground mb-6">{level.description}</p>
+                    {level.description && (
+                      <p className="text-muted-foreground mb-6">{level.description}</p>
+                    )}
                     
                     {level.goal && (
                       <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/10">
