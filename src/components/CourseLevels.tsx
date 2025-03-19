@@ -198,9 +198,7 @@ const CourseLevels = () => {
                 
                 <AccordionContent className="px-6 pb-6">
                   <div className="pt-2 md:pl-16">
-                    {level.description && (
-                      <p className="text-muted-foreground mb-6">{level.description}</p>
-                    )}
+                    
                     
                     {level.goal && (
                       <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/10">

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Progress } from '@/components/ui/progress';
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Book } from 'lucide-react';
 import { Clock } from 'lucide-react';
@@ -113,7 +113,7 @@ const CourseLevelsWithProgress = ({ weekProgress }: { weekProgress: Record<strin
       title: "Foundations of Everyday English",
       duration: "4 Weeks, 4 Books",
       totalTime: "40 hours",
-      description: "For learners comfortable with basic English who want to build fluency. Focus on daily vocabulary, common phrases, and understanding simple ideas.",
+      goal: "Develop confidence in understanding and using English in everyday situations, focusing on high-frequency vocabulary (2,500-4,000 words), fundamental sentence structures, and intuitive listening skills. Learners at this stage should move from understanding words to grasping whole ideas.",
       books: [
         {
           title: "Super Attractor",
@@ -160,7 +160,7 @@ const CourseLevelsWithProgress = ({ weekProgress }: { weekProgress: Record<strin
       title: "Deepening Understanding and Expression",
       duration: "4 Weeks, 4 Books",
       totalTime: "48 hours",
-      description: "For learners who can understand longer texts and want to improve critical thinking, argumentation, and professional vocabulary.",
+      goal: "Shift from understanding English to expressing thoughts clearly and fluently. This level focuses on academic and professional vocabulary (4,500-7,000 words), structured thinking, and nuanced communication. Learners will learn to break down complex ideas and express opinions effectively.",
       books: [
         {
           title: "Thinking, Fast and Slow",
@@ -205,7 +205,7 @@ const CourseLevelsWithProgress = ({ weekProgress }: { weekProgress: Record<strin
       title: "Advanced Communication and Critical Thinking",
       duration: "4 Weeks, 4 Books",
       totalTime: "56 hours",
-      description: "For learners who are comfortable reading challenging books and want to refine their professional and academic English.",
+      goal: "Refine critical thinking, argumentation, and professional communication, with an emphasis on complex analysis, industry-specific vocabulary (7,000+ words), and persuasive writing.",
       books: [
         {
           title: "The Four Agreements",
@@ -281,7 +281,17 @@ const CourseLevelsWithProgress = ({ weekProgress }: { weekProgress: Record<strin
           </div>
           
           <div className="space-y-4 md:pl-16">
-            <p className="text-muted-foreground mb-4">{level.description}</p>
+            {level.goal && (
+              <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-1.5 bg-primary/10 rounded-full">
+                    <Target className="h-5 w-5 text-primary" />
+                  </div>
+                  <h4 className="font-medium">Goal</h4>
+                </div>
+                <p className="text-muted-foreground">{level.goal}</p>
+              </div>
+            )}
             
             <div className="space-y-4">
               {level.books.map((book, bookIndex) => (
