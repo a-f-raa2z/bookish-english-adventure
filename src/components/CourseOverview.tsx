@@ -6,18 +6,16 @@ import CourseTimer from './course/CourseTimer';
 import { Check, Calendar, BookOpen, Headphones, BookText, Languages, Smartphone } from 'lucide-react';
 
 const CourseOverview = () => {
-  // Split learning points into two columns
+  // Updated learning points with the four new bullets
   const learningPoints = [
-    "Understand big ideas from bestselling books.",
-    "Improve English through immersive podcast audio.",
-    "Strengthen listening and comprehension skills.",
-    "Develop critical thinking through idea exploration.",
-    "Build lasting knowledge with story-based learning.",
-    "Gain confidence in discussing complex topics in English."
+    "Gain key insights from bestselling nonfiction books to support language learning",
+    "Improve English listening and comprehension through immersive podcast episodes",
+    "Build vocabulary and fluency through real-world, context-rich content",
+    "Strengthen critical thinking and discussion skills in English"
   ];
   
-  const firstColumn = learningPoints.slice(0, 3);
-  const secondColumn = learningPoints.slice(3);
+  const firstColumn = learningPoints.slice(0, 2);
+  const secondColumn = learningPoints.slice(2);
   
   // Course content items with specific icons
   const courseContents = [
