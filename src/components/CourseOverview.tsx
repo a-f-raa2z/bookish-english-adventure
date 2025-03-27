@@ -17,11 +17,11 @@ const CourseOverview = () => {
   const firstColumn = learningPoints.slice(0, 2);
   const secondColumn = learningPoints.slice(2);
   
-  // Course content items with specific icons
+  // Updated course content items with specific icons
   const courseContents = [
     { text: "3-month structured learning program", icon: <Calendar className="h-4 w-4" /> },
-    { text: "30+ bestselling book summaries", icon: <BookOpen className="h-4 w-4" /> },
-    { text: "30+ immersive podcast episodes", icon: <Headphones className="h-4 w-4" /> },
+    { text: "12+ bestselling book summaries", icon: <BookOpen className="h-4 w-4" /> },
+    { text: "12+ immersive podcast episodes", icon: <Headphones className="h-4 w-4" /> },
     { text: "Curated vocabulary with instant lookup", icon: <BookText className="h-4 w-4" /> },
     { text: "Paragraph-by-paragraph translation", icon: <Languages className="h-4 w-4" /> },
     { text: "Access on mobile and desktop", icon: <Smartphone className="h-4 w-4" /> }
