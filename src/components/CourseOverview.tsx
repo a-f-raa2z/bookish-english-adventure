@@ -19,6 +19,16 @@ const CourseOverview = () => {
   const firstColumn = learningPoints.slice(0, 3);
   const secondColumn = learningPoints.slice(3);
   
+  // Course content items
+  const courseContents = [
+    "3-month structured learning program",
+    "30+ bestselling book summaries",
+    "30+ immersive podcast episodes",
+    "Curated vocabulary with instant lookup",
+    "Paragraph-by-paragraph translation",
+    "Access on mobile and desktop"
+  ];
+  
   return (
     <section id="overview" className="section-container">
       <div className="text-center mb-10">
@@ -61,6 +71,34 @@ const CourseOverview = () => {
               </div>
             </div>
           </div>
+          
+          {/* What's Inside the Course */}
+          <div className="glass-card p-6 mb-6">
+            <h3 className="text-lg font-semibold mb-4">What's Inside the Course</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3">
+                {courseContents.slice(0, 3).map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
+                      <Check className="h-4 w-4" />
+                    </div>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-3">
+                {courseContents.slice(3).map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
+                      <Check className="h-4 w-4" />
+                    </div>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
           <Features />
           <CourseTags />
         </div>
