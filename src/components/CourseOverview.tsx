@@ -3,7 +3,7 @@ import React from 'react';
 import Features from './course/Features';
 import CourseTags from './course/CourseTags';
 import CourseTimer from './course/CourseTimer';
-import { Check } from 'lucide-react';
+import { Check, Calendar, BookOpen, Headphones, BookText, Languages, Devices } from 'lucide-react';
 
 const CourseOverview = () => {
   // Split learning points into two columns
@@ -19,14 +19,14 @@ const CourseOverview = () => {
   const firstColumn = learningPoints.slice(0, 3);
   const secondColumn = learningPoints.slice(3);
   
-  // Course content items
+  // Course content items with specific icons
   const courseContents = [
-    "3-month structured learning program",
-    "30+ bestselling book summaries",
-    "30+ immersive podcast episodes",
-    "Curated vocabulary with instant lookup",
-    "Paragraph-by-paragraph translation",
-    "Access on mobile and desktop"
+    { text: "3-month structured learning program", icon: <Calendar className="h-4 w-4" /> },
+    { text: "30+ bestselling book summaries", icon: <BookOpen className="h-4 w-4" /> },
+    { text: "30+ immersive podcast episodes", icon: <Headphones className="h-4 w-4" /> },
+    { text: "Curated vocabulary with instant lookup", icon: <BookText className="h-4 w-4" /> },
+    { text: "Paragraph-by-paragraph translation", icon: <Languages className="h-4 w-4" /> },
+    { text: "Access on mobile and desktop", icon: <Devices className="h-4 w-4" /> }
   ];
   
   return (
@@ -80,9 +80,9 @@ const CourseOverview = () => {
                 {courseContents.slice(0, 3).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      <Check className="h-4 w-4" />
+                      {item.icon}
                     </div>
-                    <p>{item}</p>
+                    <p>{item.text}</p>
                   </div>
                 ))}
               </div>
@@ -90,9 +90,9 @@ const CourseOverview = () => {
                 {courseContents.slice(3).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      <Check className="h-4 w-4" />
+                      {item.icon}
                     </div>
-                    <p>{item}</p>
+                    <p>{item.text}</p>
                   </div>
                 ))}
               </div>
