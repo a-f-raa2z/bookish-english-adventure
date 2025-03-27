@@ -6,6 +6,19 @@ import CourseTimer from './course/CourseTimer';
 import { Check } from 'lucide-react';
 
 const CourseOverview = () => {
+  // Split learning points into two columns
+  const learningPoints = [
+    "Understand big ideas from bestselling books.",
+    "Improve English through immersive podcast audio.",
+    "Strengthen listening and comprehension skills.",
+    "Develop critical thinking through idea exploration.",
+    "Build lasting knowledge with story-based learning.",
+    "Gain confidence in discussing complex topics in English."
+  ];
+  
+  const firstColumn = learningPoints.slice(0, 3);
+  const secondColumn = learningPoints.slice(3);
+  
   return (
     <section id="overview" className="section-container">
       <div className="text-center mb-10">
@@ -22,22 +35,30 @@ const CourseOverview = () => {
         <div className="flex-1">
           <div className="glass-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-4">What You Will Learn</h3>
-            <div className="space-y-3">
-              {[
-                "Understand big ideas from bestselling books.",
-                "Improve English through immersive podcast audio.",
-                "Strengthen listening and comprehension skills.",
-                "Develop critical thinking through idea exploration.",
-                "Build lasting knowledge with story-based learning.",
-                "Gain confidence in discussing complex topics in English."
-              ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                    <Check className="h-4 w-4" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* First column */}
+              <div className="space-y-3">
+                {firstColumn.map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
+                      <Check className="h-4 w-4" />
+                    </div>
+                    <p>{item}</p>
                   </div>
-                  <p>{item}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+              
+              {/* Second column */}
+              <div className="space-y-3">
+                {secondColumn.map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
+                      <Check className="h-4 w-4" />
+                    </div>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <Features />
