@@ -3,7 +3,7 @@ import React from 'react';
 import Features from './course/Features';
 import CourseTags from './course/CourseTags';
 import CourseTimer from './course/CourseTimer';
-import { Check, Calendar, BookOpen, Headphones, BookText, Languages, Devices } from 'lucide-react';
+import { Check, Calendar, BookOpen, Headphones, BookText, Languages, Smartphone } from 'lucide-react';
 
 const CourseOverview = () => {
   // Split learning points into two columns
@@ -26,7 +26,7 @@ const CourseOverview = () => {
     { text: "30+ immersive podcast episodes", icon: <Headphones className="h-4 w-4" /> },
     { text: "Curated vocabulary with instant lookup", icon: <BookText className="h-4 w-4" /> },
     { text: "Paragraph-by-paragraph translation", icon: <Languages className="h-4 w-4" /> },
-    { text: "Access on mobile and desktop", icon: <Devices className="h-4 w-4" /> }
+    { text: "Access on mobile and desktop", icon: <Smartphone className="h-4 w-4" /> }
   ];
   
   return (
