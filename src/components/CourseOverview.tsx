@@ -50,8 +50,8 @@ const CourseOverview = () => {
               <div className="space-y-3">
                 {firstColumn.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      <Check className="h-4 w-4" />
+                    <div className="mt-0.5">
+                      <Check className="h-4 w-4 text-black" />
                     </div>
                     <p>{item}</p>
                   </div>
@@ -62,8 +62,8 @@ const CourseOverview = () => {
               <div className="space-y-3">
                 {secondColumn.map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      <Check className="h-4 w-4" />
+                    <div className="mt-0.5">
+                      <Check className="h-4 w-4 text-black" />
                     </div>
                     <p>{item}</p>
                   </div>
@@ -79,8 +79,8 @@ const CourseOverview = () => {
               <div className="space-y-3">
                 {courseContents.slice(0, 3).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      {item.icon}
+                    <div className="mt-0.5">
+                      {React.cloneElement(item.icon, { className: "h-4 w-4 text-black" })}
                     </div>
                     <p>{item.text}</p>
                   </div>
@@ -89,8 +89,8 @@ const CourseOverview = () => {
               <div className="space-y-3">
                 {courseContents.slice(3).map((item, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="p-1 bg-primary/10 rounded-full text-primary mt-0.5">
-                      {item.icon}
+                    <div className="mt-0.5">
+                      {React.cloneElement(item.icon, { className: "h-4 w-4 text-black" })}
                     </div>
                     <p>{item.text}</p>
                   </div>
