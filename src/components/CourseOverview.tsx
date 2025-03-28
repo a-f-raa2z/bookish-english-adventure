@@ -3,7 +3,8 @@ import React from 'react';
 import Features from './course/Features';
 import CourseTags from './course/CourseTags';
 import CourseTimer from './course/CourseTimer';
-import { Check, Calendar, BookOpen, Headphones, BookText, Languages, Smartphone } from 'lucide-react';
+import { Calendar, BookOpen, Headphones, BookText, Languages, Smartphone } from 'lucide-react';
+import CourseStructure from './course/CourseStructure';
 
 const CourseOverview = () => {
   // Updated learning points with the four new bullets
@@ -13,9 +14,6 @@ const CourseOverview = () => {
     "Build vocabulary and fluency through real-world, context-rich content",
     "Strengthen critical thinking and discussion skills in English"
   ];
-  
-  const firstColumn = learningPoints.slice(0, 2);
-  const secondColumn = learningPoints.slice(2);
   
   // Updated course content items with specific icons
   const courseContents = [
@@ -39,37 +37,8 @@ const CourseOverview = () => {
       </div>
       
       <div className="flex flex-col lg:flex-row gap-8 my-12">
-        {/* Left column: What You Will Learn and Tags section below it */}
+        {/* Left column: Course Includes and Tags section below it */}
         <div className="flex-1">
-          <div className="glass-card p-6 mb-6">
-            <h3 className="text-lg font-semibold mb-4">What You Will Learn</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* First column */}
-              <div className="space-y-3">
-                {firstColumn.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="mt-0.5">
-                      <Check className="h-4 w-4 text-black" />
-                    </div>
-                    <p>{item}</p>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Second column */}
-              <div className="space-y-3">
-                {secondColumn.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="mt-0.5">
-                      <Check className="h-4 w-4 text-black" />
-                    </div>
-                    <p>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
           {/* This Course Includes */}
           <div className="glass-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-4">This Course Includes</h3>
@@ -97,7 +66,8 @@ const CourseOverview = () => {
             </div>
           </div>
           
-          <Features />
+          <CourseStructure />
+          <Features learningPoints={learningPoints} />
           <CourseTags />
         </div>
         

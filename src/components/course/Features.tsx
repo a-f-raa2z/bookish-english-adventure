@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { BookOpen, MessageSquare, Brain, Book, Circle } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Check } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { 
   Carousel,
@@ -21,6 +21,10 @@ type FeatureProps = {
   title: string;
   description: string;
 };
+
+type FeaturesProps = {
+  learningPoints: string[];
+}
 
 const features = [
   {
@@ -77,8 +81,10 @@ const Feature = ({ icon, title, description }: FeatureProps) => {
   );
 };
 
-const Features = () => {
+const Features = ({ learningPoints }: FeaturesProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const firstColumn = learningPoints.slice(0, 2);
+  const secondColumn = learningPoints.slice(2);
   
   useEffect(() => {
     const observerOptions = {
@@ -155,8 +161,38 @@ const Features = () => {
         </p>
       </div>
 
-      <div className="mt-8 pt-6 border-t">
+      {/* What You Will Learn card moved from CourseOverview */}
+      <div className="glass-card p-6 mt-6">
         <h3 className="text-lg font-semibold mb-4">What You Will Learn</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* First column */}
+          <div className="space-y-3">
+            {firstColumn.map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <div className="mt-0.5">
+                  <Check className="h-4 w-4 text-black" />
+                </div>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+          
+          {/* Second column */}
+          <div className="space-y-3">
+            {secondColumn.map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <div className="mt-0.5">
+                  <Check className="h-4 w-4 text-black" />
+                </div>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 pt-6 border-t">
+        <h3 className="text-lg font-semibold mb-4">Key Benefits</h3>
         <div className="space-y-3">
           {features.map((feature, index) => (
             <Feature 
