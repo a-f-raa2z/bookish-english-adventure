@@ -133,7 +133,7 @@ const Features = ({ learningPoints }: FeaturesProps) => {
 
       {/* Course Preview Button */}
       <div className="my-6 flex justify-center">
-        <Button className="flex items-center gap-2 bg-[#F2FCE2] hover:bg-[#F2FCE2]/90 text-[#00a887]" size="lg">
+        <Button className="flex items-center gap-2 bg-[#BFDDD8] hover:bg-[#BFDDD8]/90 text-[#00a887]" size="lg">
           <PlayCircle className="w-5 h-5" />
           Preview: Atomic Habits
         </Button>
