@@ -1,7 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
-import { BookOpen, MessageSquare, Brain, Check } from 'lucide-react';
+import { BookOpen, MessageSquare, Brain, Check, PlayCircle } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Button } from '@/components/ui/button';
 import { 
   Carousel,
   CarouselContent,
@@ -26,24 +27,6 @@ type FeaturesProps = {
   learningPoints: string[];
 }
 
-const features = [
-  {
-    icon: <BookOpen className="h-6 w-6 text-primary" />,
-    title: "Unlock Big Ideas, Effortlessly",
-    description: "Bestselling books, distilled into engaging summaries and podcasts—so you learn smarter, not harder."
-  },
-  {
-    icon: <MessageSquare className="h-6 w-6 text-primary" />,
-    title: "Train Your Ears, Tune Into Knowledge",
-    description: "Absorb real-world English naturally through immersive audio, helping you understand, not just memorize."
-  },
-  {
-    icon: <Brain className="h-6 w-6 text-primary" />,
-    title: "Think Sharper, Learn Deeper",
-    description: "Go beyond passive reading—connect insights, challenge ideas, and make learning truly stick."
-  }
-];
-
 const courseImages = [
   {
     id: 1,
@@ -66,20 +49,6 @@ const courseImages = [
     alt: "Programming monitor"
   }
 ];
-
-const Feature = ({ icon, title, description }: FeatureProps) => {
-  return (
-    <div className="feature-card flex items-start gap-3 opacity-0 transition-all duration-300">
-      <div className="p-1.5 bg-primary/10 rounded-full mt-0.5">
-        {icon}
-      </div>
-      <div>
-        <p className="font-medium">{title}</p>
-        <p className="text-sm text-muted-foreground">{description}</p>
-      </div>
-    </div>
-  );
-};
 
 const Features = ({ learningPoints }: FeaturesProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -109,6 +78,7 @@ const Features = ({ learningPoints }: FeaturesProps) => {
 
   return (
     <div className="glass-card p-6">
+      {/* About the Course Section */}
       <div>
         <h3 className="text-lg font-semibold mb-4">About the Course</h3>
         
@@ -161,7 +131,15 @@ const Features = ({ learningPoints }: FeaturesProps) => {
         </p>
       </div>
 
-      {/* What You Will Learn card moved from CourseOverview */}
+      {/* Course Preview Button */}
+      <div className="my-6 flex justify-center">
+        <Button className="flex items-center gap-2" size="lg">
+          <PlayCircle className="w-5 h-5" />
+          Watch Course Preview
+        </Button>
+      </div>
+
+      {/* What You Will Learn card */}
       <div className="glass-card p-6 mt-6">
         <h3 className="text-lg font-semibold mb-4">What You Will Learn</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -188,20 +166,6 @@ const Features = ({ learningPoints }: FeaturesProps) => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="mt-8 pt-6 border-t">
-        <h3 className="text-lg font-semibold mb-4">Key Benefits</h3>
-        <div className="space-y-3">
-          {features.map((feature, index) => (
-            <Feature 
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
-          ))}
         </div>
       </div>
     </div>
